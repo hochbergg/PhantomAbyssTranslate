@@ -610,7 +610,7 @@ function texts() {
       <h1>Phantom Abyss Language Translation Tool</h1>v0.1.3 alpha<br><br>
       <div class="translation-pane">
         <h2>Translation</h2><br>
-        <div>Filter: <input type="text" x-model="translationFilter" style="font-family: 'AncientLanguage'; font-size: 30px" maxlength="1" size="1"><button style="margin-left: 20px" x-on:click="download('translation.json',localStorage.getItem('translationMap'))">Download</button>&nbsp;&nbsp;Load:<input type="file" x-on:change="loadTranslationMapFromFile($event, translationAlphabet)" /></div>
+        <div>Filter: <input type="text" x-model="translationFilter" style="font-family: 'AncientLanguage'; font-size: 30px" maxlength="1" size="1"><button style="margin-left: 20px" x-on:click="download('translation.json',localStorage.getItem('translationMap'))">Download</button>&nbsp;&nbsp;Load:&nbsp;<input type="file" x-on:change="loadTranslationMapFromFile($event, translationAlphabet)" /></div>
         <table class="styled-table">
           <thead>
             <tr>
