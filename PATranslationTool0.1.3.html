@@ -1,0 +1,721 @@
+<html>
+<head>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script>
+function texts() {
+  return { WallTexts: {
+    "1": {
+        "where": "Wall",
+        "index": 1,
+        "text": "#\u0106D\u0113?\u0115)\r\n#\u0106\u012b\u0113?\u0115$-\r\n\u00d2#\u0106\u0127\u0113?\u0115G\r\n\u00f9\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "2": {
+        "where": "Wall",
+        "index": 2,
+        "text": "B\u00fa\u0106|\u0114?\u0115jT\r\nB\u00fa\u0106{\u0114?\u0115\u00a1\r\ng\u00fa\u0106|\u0116{\u0114h\u0115+T\r\n\u00fa\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "3": {
+        "where": "Wall",
+        "index": 3,
+        "text": "A\u0116I\u0116J\u0113\u0117\u0115H#\r\n\u00db\u0116\u00f0\u0116\u012a\u0113\u0117\u0115H\u012b\r\n\u00d1c=\u0113\u0117\u0115H\u00b6\u00c1\u00b3\r\n\u00fb\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "4": {
+        "where": "Wall",
+        "index": 4,
+        "text": "Z\u011cO\u0115M\u0116N\r\nZ\u011cO\u0115^\u0116_\r\n\u00d2Z\u011cO\u00b7\u0114\u011f\u0115U\r\n\u00fc\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "5": {
+        "where": "Wall",
+        "index": 5,
+        "text": "PS\u0113\u0117\u0115Q\u00d1QS\u0113\u0117\u0115R\r\nRS\u0113\u0117\u0115\u012f\u00d2RT\u0113\u0117\u0115+\r\n+=\u0113?\u0115w\u0106\u00df\r\n\u00fd\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "6": {
+        "where": "Wall",
+        "index": 6,
+        "text": "\u00f9\u0106\u00fa\u0113\u0107\u0115\u00fb\r\n$\u0106@\u0114\u0107\u0115C\r\n\u00d0\u0106p\u011d\u0107\u0115f\u00b3Z\r\n\u00fe\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "7": {
+        "where": "Wall",
+        "index": 7,
+        "text": "\u00fa\u00e6\u00fd\u0113\u0117\u0115\u00a8\u00d9\u00fd\u00f8\r\n\u00fe\u00e6\u00fa\u00fd\u0113\u0117\u0115S\u00d9\u00fd\u00f8\r\n\u00fa\u00fe\u00e6\u00fc\u0101\u0113\u0117\u0115T\u00d9\u00fd\u00f8\r\n\u00d2\u00f9\u00e6\u00da\u0114\u0107U\u0115\u00f8\r\n\u00ff\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "8": {
+        "where": "Wall",
+        "index": 8,
+        "text": "B\u00da\u0113F\u00d1B\u00da\u0114G\r\n\u0100\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "9": {
+        "where": "Wall",
+        "index": 9,
+        "text": "\u00fa\u0113\u0117<\u0115\u00f9\u00d1\u00f9\u0113\u0117,\u0115\u00fa\r\n=\u0113\u0117<\u0115<\u00d1-\u0113\u0117,\u0115,\r\n\u013b\u0113\u0117<\u0115,\u00d1\u013b\u0113\u0117,\u0115<\r\n\u00b3=\u0113\u0117\u0115\u013b\r\n\u0101\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "10": {
+        "where": "Wall",
+        "index": 10,
+        "text": "'\u0113\u0117\u0115B^=\r\n\u00d1\u00c4\u0113\u0117\u0115B_T\r\n'\u0113`\u0115\u00c4T\r\n'\u00a2\u0113`q\u00c1\u00c5\r\n\u00f9\u00f8\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "11": {
+        "where": "Wall",
+        "index": 11,
+        "text": "B]\u0113/\u0115A\u00f8\r\nBc\u0113/\u0115\u00b8\u00b6\u00f8\r\nBk\u0113/\u0115\u00b8\u00b3\u00f8\r\n\u00f8\u011c\u0117\u0115s\r\n\u00f9\u00f9\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "12": {
+        "where": "Wall",
+        "index": 12,
+        "text": "Bq\u0113u[\u0115Bw\r\nBv\u0113u[.\u0115Bw\r\nBv\u0113/\u0115\u00b3w\r\n\u00f9\u00fa\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "13": {
+        "where": "Wall",
+        "index": 13,
+        "text": "D\u0106E\u0113\u0117\u0115i\r\n'\u0106(\u0113\u0117\u0115i\r\n$\u0106d\u0113\u0117\u0115i\r\ni\u00da\u0112F\u00b4\u0115\u013e\r\n\u00f9\u00fb\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "14": {
+        "where": "Wall",
+        "index": 14,
+        "text": "\u00b5\u0113\u0117.\u0115\u00b4\r\nE\u0113\u0117.\u0115D\r\nG\u0113\u0117.\u0115F\r\nBt\u011c/\u0115.T\r\n\u00f9\u00fc\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "15": {
+        "where": "Wall",
+        "index": 15,
+        "text": "\u00a1\u0113\u0117\u0115].\r\n}\u0113\u0117\u0115|.\r\ny\u0113\u0117\u0115k.\r\n\u00df\u0113\u0117\u0115\u00aa.\r\nr\u0113\u0117\u0115\u00b2.\r\n..\u011c\u0117\u0129.\u0115\u0117\r\n\u00f9\u00fd\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "16": {
+        "where": "Wall",
+        "index": 16,
+        "text": "\u00b7\u0113\u0117.\u0115V\u0116W\u0116X\r\n\u00f4\u011d/\u00b7\u0115\u00b2\r\n\u00f9\u00fe\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "17": {
+        "where": "Wall",
+        "index": 17,
+        "text": "B\u00be\u0113p\u0115[\u00da\r\nBb\u0113/\u0115[T\r\nBw\u0113\u00b0\u0115[\u00a8\r\nBv\u0113u\u0115[\u00f8\r\n\u00f9\u00ff\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "18": {
+        "where": "Wall",
+        "index": 18,
+        "text": "z\u0113\u0117\u0115y=\r\n\u00e2\u0113\u0117\u0115{=\r\n\u00de\u0113\u0117\u0115k=\r\nz\u0106\u00e2\u0106\u00de\u0113\u0117\u00da\u00d9\u0115Fn\r\n\u00f9\u0100\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "19": {
+        "where": "Wall",
+        "index": 19,
+        "text": "\u0130\u0113\u0117\u0115V-\r\n\u00d5\u0113\u0117\u0115X=\r\n\u013e\u0113\u0117\u0115\u00f8\u00da\r\n\u013e\u0112\u0117V\u0115\u0130\u00d1\u013e\u0114\u0117X\u0115\u00d5\r\n\u00f9\u0101\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "20": {
+        "where": "Wall",
+        "index": 20,
+        "text": "j\u0113\u00a9\u0115B\u00d1B\u0113\u00a9\u0115g\r\n\u00d2g\u0114\u00a9\u00b7\r\n\u00fa\u00f8\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "21": {
+        "where": "Wall",
+        "index": 21,
+        "text": "jY\u00a8\u0113\u0117\u0115\u00a6\r\nj\u00a6\u0113/\u0115\u00a3\r\nBYT\u0113\u0117\u0115\u00a7\r\nB\u00a7\u0113/\u0115\u00a2\r\n\u00a6\u00e6\u00a7\u0113\u0117\u0115nY\u00daZ\r\n\u00fa\u00f9\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "22": {
+        "where": "Wall",
+        "index": 22,
+        "text": "BF\u0113\u0117\u0115\u00b6l\u0106\u00b3\u00b4\r\nBG\u0113\u0117\u0115\u00b6m\u0106\u00b3\u00b5\r\n\u00f4\u0113OW\u0115F\r\n\u00fa\u00fa\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "23": {
+        "where": "Wall",
+        "index": 23,
+        "text": "\u00d8\u0113\u0117\u0114\u00d5V\u00d5\r\n\u00dc\u0113\u0117\u0114\u00b2\u00d8\r\n\u00dd\u0113\u0117\u0114\u00dcYT\r\n\u00ab\u0114\u00dd\u00daU\u0115\u00b3T\r\n\u00fa\u00fb\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "24": {
+        "where": "Wall",
+        "index": 24,
+        "text": "@\u00e6\u0113\u00b0\u0115D\u0106d\r\nj\u00e6\u0113\u00b0\u0115\u00e3\u00b2\u0106\u0127\u0129\r\n\u00fa\u00fc\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "25": {
+        "where": "Wall",
+        "index": 25,
+        "text": "B\u0113\u00c3A\u0114\u0152\r\nB\u0113\u00c3c\u0114\u00e5\r\nB\u0113\u00c3x\u0114\u00e0\r\nB\u0113p\u00cd\u0114\u00d4\r\n\u00d2\u00d4\u011c\u0117\u0115H\u00d1g\u0113\u00c3\u00cd\u0114\u00e5\u00b1T\r\n\u00fa\u00fd\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "26": {
+        "where": "Wall",
+        "index": 26,
+        "text": "Z\u0133\u00ce\u00b4\u00b3\u0115q\u00c1x\u00c1|\u00c1\u00a2\r\nZ\u0133\u00cf\u00b5\u00b3\u0115r\u00c1}\u00c1\u00e2\u00c1z\r\n\u00fa\u00fe\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "27": {
+        "where": "Wall",
+        "index": 27,
+        "text": "V\u0112\u0117\u00d1W\u0113\u0117\u00d1X\u0114\u0117\r\n\u00fa\u00ff\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "28": {
+        "where": "Wall",
+        "index": 28,
+        "text": "[\u0113\u00e5\u0115Bpb\r\nc\u0113\u00e5\u0115Bp|\r\n\u00df\u0113\u00e5\u0115B\u00f8\r\n\u00fa\u0100\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "29": {
+        "where": "Wall",
+        "index": 29,
+        "text": "\u00b9\u0113\u0117\u0115\u00b6^=\r\n\u00d1\u00c9\u0113\u0117\u0115\u00b6_=\r\n\u00cb\u0113\u0117\u0115\u00b9\u00c8\u00d1\u00ca\u0113\u0117\u0115\u00c9\u00c8\r\n\u00d2B~\u0114\u00c8\u0115\u00ca\u00c6\u00b9\r\n\u00fa\u0101\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "30": {
+        "where": "Wall",
+        "index": 30,
+        "text": "j\u00a6\u0113\u00bf\u0115E\r\nB\u00a7\u0113\u00bf\u0115G\r\n\u00d2\u00bf\u00da\u0113nU\u0115\u00f6\r\n\u00fb\u00f8\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "31": {
+        "where": "Wall",
+        "index": 31,
+        "text": "\u00a4\u0113\u0117\u0115j\u00d9j\r\n\u00a5\u0113\u0117\u0115j\u00d9\u00a4\r\n\u00d7\u0113\u0117\u0115j\u0116\u00a4\u0116\u00a5\r\nU\u0112\u00cf\u0115\u00d7\u00da\u00d9\u00f4\r\n\u00d1U\u0114\u00cf\u0115\u00d7\u00da\u00d9\u00da\r\n\u00fb\u00f9\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "32": {
+        "where": "Wall",
+        "index": 32,
+        "text": "\u00ab\u0113\u0117\u0115R\u00a9\r\n\u00b1\u0113\u0117\u0115O\u00b3\u00b2\r\nH\u0106BO\u0113\u0117\u0115\u00b1\r\n\u00f4\u0114O\u0114\u00b1\u0115X\u00e4\u00da\r\n\u00fb\u00fa\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "33": {
+        "where": "Wall",
+        "index": 33,
+        "text": "B~\u0113\u00b4H\u0114G\r\n\u00d2Bx\u0113\u00b4H\u011dn\u0115\u018d\r\n\u00fb\u00fb\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "34": {
+        "where": "Wall",
+        "index": 34,
+        "text": "\u00d4\u0113\u0117\u0114G\u00b7\r\nBT\u0113p\u0115\u00d4\r\n\u00d2\u00f4\u0113p\u0115\u00a7\u0106G\u00e8\u00f8\r\n\u00fb\u00fc\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "35": {
+        "where": "Wall",
+        "index": 35,
+        "text": "e\u0113\u0117\u0115dT\r\n\"\u0113\u0117\u0115I@\r\nf\u0113\u0117\u0115\u00ba_T\r\n\u00bc\u0113n\u00bf.\u0115e\u0106f\u0106\"\r\n\u00fb\u00fd\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "36": {
+        "where": "Wall",
+        "index": 36,
+        "text": "\u00bd\u0113\u0117\u0115\u00ac\u00df\r\n\u00af\u0113\u0117\u0115\u00ac\u00e7\r\nZ\u0133\u00bd\u00a8\u0106\u00af\u00b7\r\n\u00fb\u00fe\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "37": {
+        "where": "Wall",
+        "index": 37,
+        "text": "\u0119\u0113\u0117\u0114u\u0115\u00a2\r\nZ\u0113u\u0119\u0114_[\u0115\u00f8\r\n\u00fb\u00ff\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "38": {
+        "where": "Wall",
+        "index": 38,
+        "text": "\u00d6\u0113\u0117\u0114O\u0115\u00f5.\r\nh\u0113\u0117\u0115\u00b8\u00da\r\nZ\u011d\u00d6\u0115h\u00d2Z\u0114\u00d6.\u0115y\r\n\u00fb\u0100\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "39": {
+        "where": "Wall",
+        "index": 39,
+        "text": "B\u00a2\u0113u[\u0115g\r\ngk\u0113us\u0115Bq\r\n\u0134g}\u0113u\u00f8\u0115B\r\n\u0134g{\u0113ut\u0115Bv\r\n\u00fb\u0101\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "40": {
+        "where": "Wall",
+        "index": 40,
+        "text": "\u00e1\u0113\u0117\u0115\u00d7\u00e0\u00a7=\u00d9'\r\nB\u00d0S\u0113p\u0114`\r\n\u00d2'\u0113`\u0115W\u00d1\u00e1\u0114`\u0115X'\r\n\u00d0S\u011d?\u00b7\u0115k\r\n\u00fc\u00f8\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "41": {
+        "where": "Wall",
+        "index": 41,
+        "text": "\u00c4\u00c5\u0113O\u0115r\r\n\u00d2\u00f9\u00d9\u00fd\u00f8\u00c4\u011c/\u0115\u00c5\r\n\u00fc\u00f9\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "42": {
+        "where": "Wall",
+        "index": 42,
+        "text": "\u00cd\u0113\u0117\u0115\u00cc\u00f6\r\n\u00d3\u0113\u0117\u0115\u00cb\u00d9'\r\n\u011aW\u0113\u0117\u0133uX\r\n\u011a\u00cd\u0116\u011a\u00d3\u011d\u0117\u0115H\r\n\u00fc\u00fa\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "43": {
+        "where": "Wall",
+        "index": 43,
+        "text": "r\u0113\u0117\u0115`\u00bf\r\n\u00e7\u0113\u0117\u0115r\u00a1\r\n\u00e8\u0113\u0117\u0115\u00a1>\u00e0\r\n'\u00f7\u0113`\u00e7\u00c1\u00e8\r\n\u00fc\u00fb\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "44": {
+        "where": "Wall",
+        "index": 44,
+        "text": "P\u018d\u0113/\u0115H\u00f8\r\nPH\u0113/\u0115HT\r\n\u00e0\u0113\u0117\u0114nF\u0115PH\r\nF\u00e6G\u0113/\u0115PHT\r\n\u00fc\u00fc\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "45": {
+        "where": "Wall",
+        "index": 45,
+        "text": "\u00e3\u0113\u0117\u0115l\u00d9j\u00a6\r\nZ\u0132\u00e3\u0130\u0114\u00cf\u0115\u00ca\r\n\u00fc\u00fd\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "46": {
+        "where": "Wall",
+        "index": 46,
+        "text": "\u00e6\u0113\u0117\u0114?\u0115<\r\n\u00f6\u0113\u0117\u0114\u00e6.\u0106m.\r\nZ\u0132\u00e6W\u00d1Z\u0132\u00f6\u00b7\r\n\u00fc\u00fe\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "47": {
+        "where": "Wall",
+        "index": 47,
+        "text": "\u014b\u0113\u0117\u0115\u0119H\r\n\u014c\u0113\u0117\u0115H\u0119\r\n\u0128\u011duZ\u0115\u014c,\u0106\u014b<\r\n\u00fc\u00ff\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "48": {
+        "where": "Wall",
+        "index": 48,
+        "text": "\u0137\u0113\u0136\u0115[,\r\n\u0138\u0113\u0136\u0115[\u013b\r\n\u0139\u0113\u0136\u0115[<\r\n\u00d1\u014e\u0113\u0136\u0115~\u00beT\r\n\u00fc\u0100\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "49": {
+        "where": "Wall",
+        "index": 49,
+        "text": "\u014e\u0113\u0117\u013d\u00d9\u0115+\u00da\r\n\u013f\u0113\u0117\u013d\u00c7\u00d9\u0115\u00b3_\u00da\r\n\u014d\u0113\u0117\u013d\u00c6\u00d9\u0115\u00b3^\u00da\r\n\u00d2\u00b3\u00f4\u011d\u013f\u0116\u014d\r\n\u00fc\u0101\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "50": {
+        "where": "Wall",
+        "index": 50,
+        "text": "\u0140\u0113\u00f5\u0115\u0128\u0106\u0129\r\n\u0141\u0113?\u0115R\u0106\u012f\r\n\u0142\u0113\u0152\u0115\u014f\u0106B\r\n\u012c\u0113\u00ce\u00b4\u00e4\u0115\u00b3\r\n\u00fd\u00f8\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "51": {
+        "where": "Wall",
+        "index": 51,
+        "text": "\u0155\u0106\u0154\u0113\u0117\u0115i\r\n\u0155\u0113\u00c3\u0115a\r\n\u0154\u0113\u00c3\u0115\u0152\r\n\u0155\u0113\u0117<\u00d4\u0115\u0154\r\n\u00fd\u00f9\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "52": {
+        "where": "Wall",
+        "index": 52,
+        "text": "\u00c4T\u0113\u0117\u0115\u0157\r\n\u00c4S\u0113\u0117\u0115\u0158\r\n\u0141\u0106\u0142\u0113\u0117\u0115\u0159\r\n\u012c\u0106\u0140\u0113\u0117\u0115\u015a\r\n'\u0106(\u0113\u0117\u0115\u015b\r\n\u00fd\u00fa\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "53": {
+        "where": "Wall",
+        "index": 53,
+        "text": "\u0166\u0113\u0117\u0115@k\u015e\u00ab\r\n\u00f4\u0113\u0117\u0115\u012cz\u015e\u00ab\r\n\u00f4\u0113p\u00f2\u00f4\u0112\u0117\u0115\u0166\r\n\u00fd\u00fb\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "54": {
+        "where": "Wall",
+        "index": 54,
+        "text": "@\u0113\u00b0\u0115\u0169\u0106d\u0106u\u017c\u0114\u00e6\r\n\u012c\u0113\u00b0\u0115\u00f8>\u00b3f\u0114\u00e6\r\n\u00fd\u00fc\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "55": {
+        "where": "Wall",
+        "index": 55,
+        "text": "\u0168\u0113\u0117\u013d\u00d9\u0115\u0169\u0106\u016a\u0106\u016b\r\n\u0169\u0113u\u0115D\u0106\u0170\r\n\u016a\u0106\u016b\u0113u\u0115E\u0106\u0171\r\n\u016c\u0113\u0117\u0115\u016b\u0191\r\n\u016d\u011c*\u0115\u0168\r\n\u00fd\u00fd\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "56": {
+        "where": "Wall",
+        "index": 56,
+        "text": "\u012b\u00b4d\u0114l_\r\nd\u00b4\u0167\u0114l_\r\n\u0167\u0114l_\u00b7\r\n\u00fd\u00fe\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "57": {
+        "where": "Wall",
+        "index": 57,
+        "text": "#\u0170\u0106d\u0171\u0112?\u0115A\r\n\u00d2\u0154\u0170\u0106\u0127\u0171\u0114\u00c3\u0115A\r\n\u00fd\u00ff\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "58": {
+        "where": "Wall",
+        "index": 58,
+        "text": "\u0175\u0106\u0176\u0106\u0177\u0113\u017bj\u0115\u0127\u0106\u0169\u0106e\r\n\u0178\u0106\u0179\u0106\u017a\u0113\u017b\u00a4\u0115$\u0106@\u0106\u00e8\r\n\u017c\u0113\u017b\u00a5\u0113B\r\n\u00fd\u0100\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "59": {
+        "where": "Wall",
+        "index": 59,
+        "text": "\u014e\u017f\u00c1\u017d\u0113\u0117\u0115\u00dd\r\n\u014e\u017e\u017bT\u0113\u0117\u0115\u00b2\r\n\u00fd\u0101\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "60": {
+        "where": "Wall",
+        "index": 60,
+        "text": "jb\u0116jw\u0113\u0117\u00da\u0115\u0180\r\n\u00d2jg\u0113\u0117\u0129\u0115j\u0180=\u00d9\u00da\r\n\u00fe\u00f8\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "61": {
+        "where": "Wall",
+        "index": 61,
+        "text": "\u0161_\u0106\u0160^\u0106\u015e\u00fc\u0113\u0117\u0115P\r\n\u00d2P\u0106\u0120\u00f8\u0115\u00dd\r\n\u00fe\u00f9\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "62": {
+        "where": "Wall",
+        "index": 62,
+        "text": "\u015c\u0113nl\u0115P\u00fa\r\n\u015d\u0113n^\u00c1_\u0115P\u00fa\r\n\u015c\u0174\u011d\u0107\u0115\u015d\u00d1\u015d\u0174\u011d\u0107\u015c\r\nZ\u0133\u00f5\u00d4\u0115\u0174\u00da\r\n\u00fe\u00fa\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "63": {
+        "where": "Wall",
+        "index": 63,
+        "text": "\u0198\u0113/\u0115\u016f\u0152\r\n\u0199\u0113/\u0115\u016e\u0152\r\n\u019a\u0113/\u0115\u00e2\u0152\r\nZ\u0114/\u0115\u00f8>\u00c9Z\u0106\u0122\r\n\u00fe\u00fb\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "64": {
+        "where": "Wall",
+        "index": 64,
+        "text": "\u0135\u0159\u0113/\u0115\u018c\u00fa\r\n\u0135\u015a\u0113/\u0115\u018c\u00fb\r\n\u0135\u015b\u0113/\u0115\u018c\u00fd\r\n\u00d2\u0135\u0127\u00f4\u0113/\u0115\u018c\u00fd\u00fc\r\n\u00fe\u00fc\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "65": {
+        "where": "Wall",
+        "index": 65,
+        "text": "\u0149\u0113\u0117\u00f2\u0129\u011f&\r\n\u013c\u0113\u0117\u00f2\u0152\u0115\u011a\r\n\u014e\u0113/\u0115\u0149=T\r\n\u011a\u00d4\u0113\u0117\u0149\u0115\u013c=\u00d9\u00da\r\n\u00fe\u00fd\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "66": {
+        "where": "Wall",
+        "index": 66,
+        "text": "\u012c\u0132\u0117\u0115B\u00e4\u0129\r\n\u00d2\u012c\u00a7<\u0113/\u0115\u0129,\r\n\u0129\u011b\u0117U\u00da\u0115\u00a3\r\n\u00fe\u00fe\u00d9\u00e4\u018a\u012c\u00b8 "
+    },
+    "67": {
+        "where": "Wall",
+        "index": 67,
+        "text": "\u014f\u0132\u0117,\u0115B\r\n\u00d2\u014f\u00b3S\u0113=\u0115B\u00b3T\r\n\u00f4\u0114a\u00aeU-\u0115\u014f\u00b3\u0135\u00d9\u00f4\r\n\u00f4\u0113\u0127\u0115Z\u018a(\u00e9 \r\n\u00fe\u00ff\u0106\u00d5\u00d9\u00e4\u018a\u012c\u00b8 "
+    }
+},
+  HubTexts: {
+    "1": {
+        "where": "Hub",
+        "index": 1,
+        "text": "\u00e4\u00d9\u018a') \u0106g\u00fc"
+    },
+    "2": {
+        "where": "Hub",
+        "index": 2,
+        "text": "\u018b\u00f9\u00fa\u00f8 \r\n\u018a+) \u0112\u0117\u0115+=\r\n\u018a+) \u0112/\u0115b\r\n\u018a+) \u0112/\u0115\u018d\r\n\u018a+) \u0112/\u0115]\r\n\u018a+) \u0112/\u0115g\u00f8"
+    },
+    "3": {
+        "where": "Hub",
+        "index": 3,
+        "text": "\u018b\u00f9\u00fa\u00f9 \u0115\u018b\u00f9\u00fa\u0100 \r\n\u018a') \u0112`\u0115\u018a+) \r\n\u018a') \u0112\u0117\u0115B^=\r\n\u018a') \u0112a\u0115\u018a(* c\r\n\u018a') \u0106\u018a(* \u0112?\u0115jT\r\n\u018a') \u0112/\u0115k"
+    },
+    "4": {
+        "where": "Hub",
+        "index": 4,
+        "text": "\u0197\u00f9\u00fa\u0101\u00f2\u00f9 \r\ng\u00fc\u0112n\u0115eE=\r\ng\u00fc\u0112\u00b4\u0115\u018a+) \r\ng\u00fc\u0112a\u0115\u018a') "
+    },
+    "5": {
+        "where": "Hub",
+        "index": 5,
+        "text": "\u0197\u00f9\u00fa\u0101\u00f2\u00fa \r\ng\u0113\u0117\u0115\u00d4\r\n\u018a') \u0112\u0117.\u0115\u00d4\r\n\u018a') \u0112\u0117,\u0115g\r\n\u018a') \u0112/.\u0115k\r\n\u018a') \u0112p\u0114\u0107\u0115\u00d4"
+    },
+    "6": {
+        "where": "Hub",
+        "index": 6,
+        "text": "\u0197\u00f9\u00fb\u00f8\u00f2\u00f9 \r\n\u018a\u0118\" \u0112/\u0115q>\u00f7\r\n\u018a!# \u0112/\u0115x>}\r\n\u018a!$ \u0112/\u0115|>\u00e2\r\n\u018a\u0118% \u0112/\u0115\u00a2>\u013c"
+    },
+    "7": {
+        "where": "Hub",
+        "index": 7,
+        "text": "\u0197\u00f9\u00fb\u00f8\u00f2\u00fa \r\ng\u00fc\u0112s\u0115BS\r\n\u00d2g\u00fc\u0112t\u0115BS\r\nBT\u0112\u00a9\u0115g\u00fc\r\n\u018a') \u0112\u00a9\u00aa\u0115g\u00fc"
+    },
+    "8": {
+        "where": "Hub",
+        "index": 8,
+        "text": "\u0197\u00f9\u00fb\u00f9\u00f2\u00f9 \r\n\u018a') \u0112?\u0115\u00abg\u00fc\r\n\u018a') \u0112\u00acg\u00fc\u0114\u0107\u0115\u00d4\r\n\u00d2g\u00fc\u0112/.\u0115k"
+    },
+    "9": {
+        "where": "Hub",
+        "index": 9,
+        "text": "\u0197\u00f9\u00fb\u00f9\u00f2\u00fa \r\ng\u00fc\u0112p\u00f2n\u00ae\u0115eE=\r\ng\u00fc\u0112\u00b0\u0115\u00b1\r\n\u00bbg\u00fc\u0114n\u0115eE=\r\ng\u00fc\u0112\u011a\u00f2\u018a') \u011du\u0115\u00b1\r\n\u0153\u018a') \u0114\u0107\u0115\u00d4"
+    },
+    "10": {
+        "where": "Hub",
+        "index": 10,
+        "text": "\u018b\u00f9\u00fb\u00fa \u0115\u018b\u00f9\u00fb\u00fd \r\n\u018a') \u0112?\u00ab\u00b4\u0115HT\r\n\u00bc\u014a\u00f9\u0112O\u00f2\u00b4\u00ab\u0106\u00b1\r\n\u018a') \u0112\u00acg\u00fc\u00ae\u0114\u0107\u0115\u00d4\r\ng\u00fc\u0112/.\u00ae\u0115k\r\ng\u00fc\u0112\u00b0\u0115\u00b1<"
+    },
+    "11": {
+        "where": "Hub",
+        "index": 11,
+        "text": "\u0197\u00f9\u00fb\u00fe\u00f2\u00f9 \r\n\u018a') \u0112\u00ac\u018a\u0118\" \u0115\u0119\r\n\u018a\u0118\" \u0112\u0119\u018a') \u0114\u00c3\u0115\u00c5"
+    },
+    "12": {
+        "where": "Hub",
+        "index": 12,
+        "text": "\u0197\u00f9\u00fb\u00fe\u00f2\u00fa \r\n\u018a') \u0112a\u0115\u018a\u0140e \u00bc\u00f7\r\n\u018a\u0140e \u0112\u00f7\u0115\u00c4\u00c5T\r\n\u018a\u0140e \u0112\u0119\u00c4\u00f2O\u0115\u00b4\u00ab\u0106\u00b1\r\n\u00c4T\u0112\u00b1\u00d1\u018a\u0140e \u0112O\u0115\u00b4\u00ab\r\n\u00d2\u018a\u0118\" \u0112\u018d\u0115\u018a\u0140e \r\ng\u00fc\u0112/.\u00ae\u0115k\r\ng\u00fc\u0112\u00b0\u00ae\u0115\u00b1<"
+    },
+    "13": {
+        "where": "Hub",
+        "index": 13,
+        "text": "\u0197\u00f9\u00fb\u0101\u00f2\u00f9 \r\n\u018a') \u0112\u00ac\u018a!# \u0115\u0119\r\n\u018a!# \u0112\u0119\u018a') \u0114\u00c3\u0115\u00be"
+    },
+    "14": {
+        "where": "Hub",
+        "index": 14,
+        "text": "\u0197\u00f9\u00fb\u0101\u00f2\u00fa \r\n\u018a') \u0112a\u0115\u018a\u0141& \u00bcx\r\n\u018a\u0141& \u0112\u00ce\u00ab\u00b4\u0115[T\r\n\u00c4\u00be=\u0112O\u0115\u00b4\u00ab\u0106\u00b1\r\n\u00c4T\u0112\u00b1\u00d1\u018a\u0141& \u0112O\u0115\u00b4\u00ab\r\n\u00d2\u018a!# \u0112\u018d\u0115\u018a\u0141& \r\ng\u00fc\u0112/.\u00ae\u0115k\r\ng\u00fc\u0112p\u00ae\u0115\u00b1<"
+    },
+    "15": {
+        "where": "Hub",
+        "index": 15,
+        "text": "\u0197\u00f9\u00fc\u00fc\u00f2\u00f9 \r\n\u018a') \u0112\u00ac\u018a!$ \u0115\u0119\r\n\u018a!$ \u0112\u0119\u018a') \u0114\u00c3\u0115\u00d0"
+    },
+    "16": {
+        "where": "Hub",
+        "index": 16,
+        "text": "\u0197\u00f9\u00fc\u00fc\u00f2\u00fa \r\n\u018a') \u0112\u00ce\u00ab\u00b4\u0115\u00d3\u00d9\u018a') \r\n\u018a') \u0112\u0119\u018a\u0142\u00d3 \u00bc\u0114\u00cf\u0115\u00d3\r\n\u00c4\u00d0=\u0112O\u0115\u00b4\u00ab\u0106\u00b1\r\n\u00c4T\u0112\u00b1\u00d1\u018a\u0142\u00d3 \u0112O\u0115\u00b4\u00ab\r\n\u00d2\u018a!$ \u0112\u018d\u0115\u018a\u0142\u00d3 \r\ng\u00fc\u0112/.\u00ae\u0115k\r\ng\u00fc\u0112\u00af\u00ae\u0115\u00b1<"
+    },
+    "17": {
+        "where": "Hub",
+        "index": 17,
+        "text": "\u018b\u00f9\u00fc\u0100 \r\n\u018a') \u0112\u00ac\u018a\u0118% \u0115\u0119\r\n\u018a\u0118% \u0112\u0119\u018a') \u0114\u00c3\u0115\u00bfG\r\n\u018a\u0118% \u0112\u00ce\u00ab\u00b4\u0115\u00cdT\r\n\u018a\u0118% \u0112\u00ce\u00cd\u00f9\u00b4\u0115u\u00d4\r\n\u00c4\u00bfG=\u0112O\u0115\u00b4\u00ab\u0106\u00b1\r\n\u00c4T\u0112\u00b1\u00d1g\u00fc\u0112/\u00d5\u0115k"
+    },
+    "18": {
+        "where": "Hub",
+        "index": 18,
+        "text": "\u0197\u00f9\u00fc\u0101\u00f2\u00f9 \r\ng\u00fc\u0131n\u00ae\u0115eE=\r\n\u00d2\u018a\u0118% \u0112\u013c\u0115g\u00fb\r\n\u018a\u0118% \u0112p\u00f2\u00c3\u00b1\u00f2\u013e\u0115\u00da\r\n\u018a\u0140e \u0112\u00f5\u0106\u014b\u0115g\u00fb\r\n\u018a\u0141& \u0112?\u00ab\u00b4\u0115Hg\r\n\u018a\u0142\u00d3 \u0112\u014c\u018a\u0118% \u00f2\u00b4\u0115H\r\n\u018a\u0118% \u0112\u00dd\u00b4\u0115\u00ab\u00d1\u0112\u013e\u0115\u00f8\r\n\u00d2\u00b1\u00da\u0112\u0117\u0115\u00b1\u00f8\u00ae"
+    },
+    "19": {
+        "where": "Hub",
+        "index": 19,
+        "text": "\u0197\u00f9\u00fc\u0101\u00f2\u00fa \r\n\u00bc\u00fb\u0112\u018d\u0115g\u00fb\u00d1g\u00fb\u0112/\u0115k\r\n\u018a\u0118\" \u0112u\u018a\u0140e \u0115\u0107<\r\n\u018a\u0140e \u0112\u0107\u0115\u018a\u013a\u0140 \r\n\u018a!# \u0112u\u018a\u0141& \u0115\u0107<\r\n\u018a\u0141& \u0112\u0107\u0115\u018a\u013a\u0141 \r\n\u018a!$ \u0112u\u018a\u0142\u00d3 \u0115\u0107<\r\n\u018a\u0142\u00d3 \u0112\u0107\u0115\u018a\u013a\u0142 \r\n\u00bbg\u00fb\u0112\u013a\u0115\u00ab\u0106\u018a\u0118% \u00dd"
+    },
+    "20": {
+        "where": "Hub",
+        "index": 20,
+        "text": "\u0197\u00f9\u00fc\u0101\u00f2\u00fb \r\n\u018a') \u0112u\u0115\u00b1=\r\n\u018a') \u0112\u00acg\u00fb\u00ae\u0114\u0107\u0115\u00d4\r\ng\u00fb\u0112\u0119\u00f2u\u00d4\u0112\u0117\u00b4W\u0115\u00cd\r\n\u00d1\u00cd\u0112\u0117\u00b4_=W\u0115\u00ab\r\n\u018a') \u0112\u00b0\u0114\u00b4\u00ab\u0106\u00e0\r\n\u018a') \u0112\u00b0\u0114\u00cf\u0115\u00cd\r\n\u00d2\u018a') \u0112\u0117W\u0115\u00a7\r\nB\u00a7\u0114\u00e0\u00b7\u0115\u00ab\r\n\u018a') \u0112/\u0115{\u0106y"
+    },
+    "21": {
+        "where": "Hub",
+        "index": 21,
+        "text": "\u018b\u00f9\u00fd\u00f8 \u0115\u018b\u00f9\u00fd\u00fc \r\n\u018a') \u0112pW\u00f2\u00e1\u0114\u00cf\u0115\u00cd\r\n\u018a(* \u0112\u00bd\u00f2\u00e1\u0114\u00b4\u00ab.\u0106\u00b1.\r\n\u018a') \u0106\u00e1\u0112\u00d6\u0115\u018a(* \r\nj\u00da\u00d9'\u0112\u00b4\u00ab\r\n\u00d1\u00a4\u00da\u00d9'\u0112\u00b4\u00ab\r\n\u00d2j\u00f8\u0106\u00a4\u00f8\u0112\u00e0"
+    },
+    "22": {
+        "where": "Hub",
+        "index": 22,
+        "text": "\u0197\u00f9\u00fd\u00fd\u00f2\u00f9 \r\n\u018a(* \u0112\u00cf\u0115\u018a\u00e1) \u00a5\u00e1\u00d5\r\n\u00d2\u018a') \u0112\u00dc\u0115\u018a(* \r\n\u018a') \u0112\u00dd\u0115\u018a(* \r\n\u00d1\u018a') \u0112\u00cf\u011f\u0115\u018a\u00e1) \r\n\u018a\u00e1) \u0112\u00b4\u00aa\u0115\u00ab\r\n\u00d2\u018a\u00e1) \u0112\u011f."
+    },
+    "23": {
+        "where": "Hub",
+        "index": 23,
+        "text": "\u0197\u00f9\u00fd\u00fd\u00f2\u00fa \r\ng\u00fb\u0112\u00b0\u0115\u00b1<T\u00ae\r\n\u00d2<T\u0112\u0117<\u0115B\u00da\u00d9\u018a+) \r\ng\u00fb\u0112\u011a\u011d\u018a') \u0114u\u0115\u00b1\u00da\r\n\u00bb\u018a') F\u00c1G\u0114\u0107\u0129\u0115\u00d4"
+    },
+    "24": {
+        "where": "Hub",
+        "index": 24,
+        "text": "\u018b\u00f9\u00fd\u00fe \u0115\u018b\u00f9\u00ff\u00ff \r\n\u00cd\u0114\u00e5YT\u0115\u00b1T\r\n\u018a') \u0112\u00e6\u00ab\u00f9\u00f2\u0107\u0115\u00abT\r\n\u00d1\u018a') \u0112\u00e6\u00abT\u00f2\u0107\u0115\u018a%\u00b3\r\n\u018a') \u0112\u00e7\u00c4\u00da\u0114O\u0115\u00e8\u0116\u00b4\u00ab\r\n\u018a+) \u0112\u0107\u0115h\u0106C"
+    },
+    "25": {
+        "where": "Hub",
+        "index": 25,
+        "text": "\u018b\u00f9\u00ff\u0100 \r\n\u018a(* \u00a7\u0112O\u0113\u00b4\u00ab.\r\n\u00d2\u018a') \u0112|\u0115\u018a(* \r\n\u018a') \u0112\u00e8.\u0115\u018a(* \r\n\u018a') \u0112\u00b2\u0115\u018a(* \r\n\u00d2\u018a(* \u0112/\u00d5\u0115\u00e2\u0106z\r\n\u018a(* \u0112\u00cf\u0115A\u00d9'\r\n\u018a(* \u0112\u00c0\u00f2'\u0112\u0152\u0115\u00d7\u00da\u0106+\r\n\u00d1\u018a(* \u0112O\u00d5\u0115G\u00ab\u00b5\r\nG\u018a(* \u0112\u0117.\u0115\u00b1"
+    },
+    "26": {
+        "where": "Hub",
+        "index": 26,
+        "text": "\u0197\u00f9\u00ff\u0101\u00f2\u00f9 \r\n\u018a') \u0112h\u0115\u00b3\r\n\u018a') \u0112/\u00d5\u0115\u00f7\u0106}\r\n\u018a') \u0112\u00d6\u0115\u00b6\u00d9\u018a(* \r\n\u018a') \u0112\u00e3\u00b4\u00ab\r\n\u018a\u0118% \u0112a\u00b4\u00ab\u0115\u018a') "
+    },
+    "27": {
+        "where": "Hub",
+        "index": 27,
+        "text": "\u0197\u00f9\u00ff\u0101\u00f2\u00fa \r\n\u018a\u0118% \u0112\u0119\u018a') \u0115\u0149\u00fb\u00f2\r\n \u00f9\u00f2\u018a\u00e1) \u00a5\u00e1\u00d5\u0112\u0117\u0115F\r\n \u00fa\u00f2G\u00b4\u00ab\u0113\u0117\u00b7\u0115\u00d5\r\n \u00fb\u00f2\u00cd\u00d4\u011d\u00cf\u0153\u018a\u0118% \u0114\u00b2\u013f\r\n\u018a') \u0112\u00e4\u00b4\u00ab\u0115\u00e4\u00d5\u00d1\u00b1"
+    }
+},
+         allGlyphs: 
+["!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "<", "=", ">", "?", "@", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "[", "]", "^", "_", "`", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "{", "|", "}", "~", "\u00a1", "\u00a2", "\u00a3", "\u00a4", "\u00a5", "\u00a6", "\u00a7", "\u00a8", "\u00a9", "\u00aa", "\u00ab", "\u00ac", "\u00ae", "\u00af", "\u00b0", "\u00b1", "\u00b2", "\u00b3", "\u00b4", "\u00b5", "\u00b6", "\u00b7", "\u00b8", "\u00b9", "\u00ba", "\u00bb", "\u00bc", "\u00bd", "\u00be", "\u00bf", "\u00c0", "\u00c1", "\u00c3", "\u00c4", "\u00c5", "\u00c6", "\u00c7", "\u00c8", "\u00c9", "\u00ca", "\u00cb", "\u00cc", "\u00cd", "\u00ce", "\u00cf", "\u00d0", "\u00d1", "\u00d2", "\u00d3", "\u00d4", "\u00d5", "\u00d6", "\u00d7", "\u00d8", "\u00d9", "\u00da", "\u00db", "\u00dc", "\u00dd", "\u00de", "\u00df", "\u00e0", "\u00e1", "\u00e2", "\u00e3", "\u00e4", "\u00e5", "\u00e6", "\u00e7", "\u00e8", "\u00e9", "\u00f0", "\u00f2", "\u00f4", "\u00f5", "\u00f6", "\u00f7", "\u00f8", "\u00f9", "\u00fa", "\u00fb", "\u00fc", "\u00fd", "\u00fe", "\u00ff", "\u0100", "\u0101", "\u0106", "\u0107", "\u0112", "\u0113", "\u0114", "\u0115", "\u0116", "\u0117", "\u0118", "\u0119", "\u011a", "\u011b", "\u011c", "\u011d", "\u011f", "\u0120", "\u0122", "\u0127", "\u0128", "\u0129", "\u012a", "\u012b", "\u012c", "\u012f", "\u0130", "\u0131", "\u0132", "\u0133", "\u0134", "\u0135", "\u0136", "\u0137", "\u0138", "\u0139", "\u013a", "\u013b", "\u013c", "\u013d", "\u013e", "\u013f", "\u0140", "\u0141", "\u0142", "\u0149", "\u014a", "\u014b", "\u014c", "\u014d", "\u014e", "\u014f", "\u0152", "\u0153", "\u0154", "\u0155", "\u0157", "\u0158", "\u0159", "\u015a", "\u015b", "\u015c", "\u015d", "\u015e", "\u0160", "\u0161", "\u0166", "\u0167", "\u0168", "\u0169", "\u016a", "\u016b", "\u016c", "\u016d", "\u016e", "\u016f", "\u0170", "\u0171", "\u0174", "\u0175", "\u0176", "\u0177", "\u0178", "\u0179", "\u017a", "\u017b", "\u017c", "\u017d", "\u017e", "\u017f", "\u0180", "\u018a", "\u018b", "\u018c", "\u018d", "\u0191", "\u0197", "\u0198", "\u0199", "\u019a"]};
+}
+</script>
+  <script>
+    function loadTranslationMapFromFile(e, translationAlphabet) {
+      var file = e.target.files[0];
+      if (!file) {
+        return;
+      }
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var contents = e.target.result;
+        
+        try {
+          var map = JSON.parse(contents);
+          
+          for ( let g of translationAlphabet ) {
+            if ( map[g.glyph] !== undefined ) {
+              g.translation = map[g.glyph];
+            } else {
+              g.translation = '';
+            }
+          }
+          
+          storeTranslations(translationAlphabet);
+             
+        } catch(e) {
+          alert(`Problem loading: ${e.message}\n${e.stack}`)
+        }
+      };
+      
+      reader.readAsText(file);
+    }
+  
+    function buildTranslationMap(translationAlphabet) {
+      const out = {};
+      for ( let g of translationAlphabet ) {
+        out[g.glyph] = g.translation;
+      }
+      return out;
+    }
+    function translateText(t, translationMap) {
+      const out = [];
+      for ( let c of t ) {
+        if ( c === '\r') {
+          continue; // Ignore \r 
+        }
+        if ( translationMap[c] !== undefined && translationMap[c] !== '') {
+          out.push('<span class="translated">&nbsp;'+translationMap[c]+'&nbsp;</span>');
+        } else {
+          out.push('<span class="not-translated">'+c+'</span>');
+        }
+      }
+      return out;
+    }
+
+    function initTranslationsIfNeeded(translationAlphabet) {
+      const storedTranslationMapStr = localStorage.getItem('translationMap');
+      
+      if ( storedTranslationMapStr !== null) {
+	    const storedTranslationMap = JSON.parse(storedTranslationMapStr);
+        for ( let g of translationAlphabet ) {
+          if ( storedTranslationMap[g.glyph] !== undefined ) {
+            g.translation = storedTranslationMap[g.glyph];
+          }
+        }
+      }
+    }
+    
+    function storeTranslations(translationAlphabet) {
+      const storedTranslationMapStr = localStorage.getItem('translationMap');
+      let storedTranslationMap = {};
+      if ( storedTranslationMapStr !== null) {
+        storedTranslationMap = JSON.parse(storedTranslationMapStr);
+      }
+      
+      for ( let g of translationAlphabet ) {
+        if ( g.translation !== '' ) {
+          storedTranslationMap[g.glyph] = g.translation;
+        } else {
+          delete storedTranslationMap[g.glyph];
+        }
+      }
+      
+      localStorage.setItem('translationMap', JSON.stringify(storedTranslationMap));
+    }
+
+    function download(filename, text) {
+      var element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+      element.setAttribute('download', filename);
+
+      element.style.display = 'none';
+      document.body.appendChild(element);
+
+      element.click();
+
+      document.body.removeChild(element);
+    }
+    
+    function data() {
+      const d = { 
+        searchText: '',
+        translationFilter: '',
+        texts: texts(),
+        translationAlphabet: texts().allGlyphs.map(x => { return {glyph: x, translation: ''}; } ),
+        get filteredTranslationAlphabet() { 
+          if (this.translationFilter === '') return this.translationAlphabet;
+          return this.translationAlphabet.filter(x => x.glyph.includes(this.translationFilter)); 
+        },
+        get allTexts() { return Object.values(this.texts.HubTexts).concat(Object.values(this.texts.WallTexts)); },
+        get filteredTexts() {
+          if (this.searchText === '') return this.allTexts;
+          return this.allTexts.filter(x => x.text.includes(this.searchText)); 
+        },
+        get translatedFilteredTexts() {
+          const translationMap = buildTranslationMap(this.translationAlphabet);
+          return this.filteredTexts.map(x => { return {...x, translated: translateText(x.text, translationMap)}; });
+        }
+      };
+        
+      initTranslationsIfNeeded(d.translationAlphabet);
+
+      return d;
+    }
+  </script>
+</head>
+<body>
+    <div x-data="data()" class="container">
+      <h1>Phantom Abyss Language Translation Tool</h1>v0.1.3 alpha<br><br>
+      <div class="translation-pane">
+        <h2>Translation</h2><br>
+        <div>Filter: <input type="text" x-model="translationFilter" style="font-family: 'AncientLanguage'; font-size: 30px" maxlength="1" size="1"><button style="margin-left: 20px" x-on:click="download('translation.json',localStorage.getItem('translationMap'))">Download</button>&nbsp;&nbsp;Load:<input type="file" x-on:change="loadTranslationMapFromFile($event, translationAlphabet)" /></div>
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Glyph</th>
+              <th>Translation</th>
+            </tr>
+          </thead>
+           <template x-for="g in filteredTranslationAlphabet">
+            <tr>
+              <td><p style="font-family: AncientLanguage; font-size: 30px; white-space: pre-line;" x-text="g.glyph"></p></td>
+              <td><input type='text' x-model="g.translation" x-on:input="storeTranslations(translationAlphabet)"></td>
+            </tr>
+          </template>
+        </table>
+      </div>
+      <div class="texts-pane">
+        <h2>Texts</h2><br>
+        <div>Filter: <input type="text" x-model="searchText" style="font-family: 'AncientLanguage'; font-size: 30px"></div>
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Where?</th>
+              <th>Number</th>
+              <th>Text</th>
+              <th>Translation</th>
+            </tr>
+          </thead>
+           <template x-for="t in translatedFilteredTexts">
+            <tr>
+              <td x-text="t.where"></td>
+              <td x-text="t.index"></td>
+              <td><p style="font-family: AncientLanguage; font-size: 30px; white-space: pre-line;" x-text="t.text"></p></td>
+              <td><template x-for="c in t.translated"><span x-html="c"></span></template></td>
+            </tr>
+          </template>
+        </table>
+      </div>
+  </div>
+  <style>
+    .translated {
+      white-space: pre-line;
+      font-size: 25px; 
+    }
+    
+    .not-translated {
+      white-space: pre-line;
+      font-family: AncientLanguage;
+      font-size: 30px;
+    }
+    
+    html {
+      box-sizing: border-box;
+      font-size: 16px;
+      font-family: sans-serif;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+      margin: 0;
+      padding: 0;
+      font-weight: normal;
+    }
+
+    ol, ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .container {
+      margin: 20px 20px 0px 20px;
+    }
+    
+    .texts-pane {
+    }
+    
+    .translation-pane {
+      float: right;
+    }
+
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+    }
+    
+    .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+    
+    .styled-table th,
+    .styled-table td {
+      padding: 12px 15px;
+      border: 1px solid #dddddd;
+    }
+  </style>
+</body>
+</html>
