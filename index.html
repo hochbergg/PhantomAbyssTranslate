@@ -577,9 +577,9 @@
 						continue; // Ignore \r 
 					}
 					if ( translationMap[c] !== undefined && translationMap[c] !== '') {
-						out.push('<span class="translated">&nbsp;'+translationMap[c]+'&nbsp;</span>');
+						out.push({html: '<span class="translated">&nbsp;'+translationMap[c]+'&nbsp;</span>', glyph: c});
 					} else {
-						out.push('<span class="not-translated">'+c+'</span>');
+						out.push({html: '<span class="not-translated">'+c+'</span>', glyph: c});
 					}
 				}
 				return out;
@@ -766,7 +766,7 @@
 									<tr class="border-bottom border-dark">
 										<td class="bg-light"><span x-text="t.where"></span>&nbsp;<span x-text="t.index"></span></td>
 										<td><p class="ancient-lang fs-2 mb-0 p-0" style="white-space: pre-line"><template x-for="g in t.text"><span x-text="g" x-on:click="translationFilter=g"></span></template></p></td>
-										<td><template x-for="c in t.translated"><span class="p-0" x-html="c"></span></template></td>
+										<td><template x-for="c in t.translated"><span class="p-0" x-html="c.html" x-on:click="translationFilter=c.glyph"></span></template></td>
 									</tr>
 								</template>
 							</table>
