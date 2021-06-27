@@ -21,6 +21,18 @@
 			  font-size: 30px;
 			}
 			
+			.glyph-alphabet-label {
+				width: 2.5rem;
+				display: flex;
+				justify-content: center;
+			}
+			
+			.number-alphabet-label {
+				width: 3.5rem;
+				display: flex;
+				justify-content: center;
+			}
+			
 			/*
 			html {
 			  box-sizing: border-box;
@@ -695,6 +707,12 @@
 				initTranslationsIfNeeded(d.translationAlphabet);
 				return d;
 			}
+			
+			function formatGlyphNum(num) {
+				num = num.toString();
+				while (num.length < 3) num = "0" + num;
+				return "#"+num;
+			}
 		</script>
 	</head>
 	<body>
@@ -740,11 +758,12 @@
 									</tr>
 								</thead>
 								<tbody>
-								<template x-for="g in filteredTranslationAlphabet">
+								<template x-for="(g, index) in filteredTranslationAlphabet">
 									<tr>
 										<td class="border-0 pb-0">
 											<div class="input-group">
-												<span class="input-group-text ancient-lang fs-3 p-1" x-text="g.glyph"></span>
+												<span class="input-group-text fs-6 p-1 number-alphabet-label" x-text="formatGlyphNum(index+1)""></span>
+												<span class="input-group-text ancient-lang fs-3 p-1 glyph-alphabet-label" x-text="g.glyph"></span>
 												<input type="text" class="form-control p-1" x-model="g.translation" x-on:input="storeTranslations(translationAlphabet)">
 											</div>
 										</td>
