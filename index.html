@@ -32,64 +32,6 @@
 				display: flex;
 				justify-content: center;
 			}
-			
-			/*
-			html {
-			  box-sizing: border-box;
-			  font-size: 16px;
-			  font-family: sans-serif;
-			}
-
-			*, *:before, *:after {
-			  box-sizing: inherit;
-			}
-
-			body, h1, h2, h3, h4, h5, h6, p, ol, ul {
-			  margin: 0;
-			  padding: 0;
-			  font-weight: normal;
-			}
-
-			ol, ul {
-			  list-style: none;
-			}
-
-			img {
-			  max-width: 100%;
-			  height: auto;
-			}
-
-			.container {
-			  margin: 20px 20px 0px 20px;
-			}
-			
-			.texts-pane {
-			}
-			
-			.translation-pane {
-			  float: right;
-			}
-
-			.styled-table {
-				border-collapse: collapse;
-				margin: 25px 0;
-				font-size: 0.9em;
-				font-family: sans-serif;
-				min-width: 400px;
-			}
-			
-			.styled-table thead tr {
-				background-color: #009879;
-				color: #ffffff;
-				text-align: left;
-			}
-			
-			.styled-table th,
-			.styled-table td {
-			  padding: 12px 15px;
-			  border: 1px solid #dddddd;
-			}
-			*/
 		</style>
 		<script>
 			function texts() {
@@ -721,6 +663,21 @@
 				while (num.length < 3) num = "0" + num;
 				return "#"+num;
 			}
+			
+			let GOOGLE_API_KEY="AIzaSyAThnQuYTUDmJUEJip87fia4k7lLVagvT0";
+			async function loadSheetTranslations() {
+				const sheetTranslationsFetch = await fetch("https://sheets.googleapis.com/v4/spreadsheets/12w1foShEkiWhKd1ktgwWi8zJv9icKjuQVwRCe17_SVg/values/'Glyph%20Handbook'!A1:M264?key=AIzaSyAThnQuYTUDmJUEJip87fia4k7lLVagvT0");
+				
+				if ( !sheetTranslationsFetch.ok ) {
+					if ( sheetTranslationsFetch.bodyUsed ) {
+						throw new Error(`Error fetching sheet information: ${sheetTranslationsFetch.statusText}: ${await sheetTranslationsFetch.text()}`);
+					} else {
+						throw new Error(`Error fetching sheet information: ${sheetTranslationsFetch.statusText}`)
+					}
+				}
+				
+				// TODO
+			}
 		</script>
 	</head>
 	<body>
@@ -728,7 +685,7 @@
 			<div class="row">
 				<div class="col">
 					<h1>Phantom Abyss Language Translation Tool</h1>
-					<h6>v0.2.1 alpha</h6>
+					<h6>v0.2.2 alpha</h6>
 				</div>
 			</div>
 			<div class="row mb-2">
@@ -768,12 +725,13 @@
 								<tbody>
 								<template x-for="g in filteredTranslationAlphabet">
 									<tr>
-										<td class="border-0 pb-0">
+										<td class="border-0 pb-0" x-data="{ expand: false }">
 											<div class="input-group">
-												<span class="input-group-text fs-6 p-1 number-alphabet-label" x-text="formatGlyphNum(g.index)""></span>
-												<span class="input-group-text ancient-lang fs-3 p-1 glyph-alphabet-label" x-text="g.glyph"></span>
+												<span class="input-group-text fs-6 p-1 number-alphabet-label"><span x-text="formatGlyphNum(g.index)""></span></span>
+												<span class="input-group-text ancient-lang fs-3 p-1 glyph-alphabet-label"><span x-text="g.glyph" x-on:click="searchText=g.glyph"></span></span>
 												<input type="text" class="form-control p-1" x-model="g.translation" x-on:input="storeTranslations(translationAlphabet)">
 											</div>
+
 										</td>
 									</tr>
 								</template>
@@ -807,7 +765,7 @@
 								<template x-for="t in translatedFilteredTexts">
 									<tr class="border-bottom border-dark">
 										<td class="bg-light"><span x-text="t.where"></span>&nbsp;<span x-text="t.index"></span></td>
-										<td><p class="ancient-lang fs-2 mb-0 p-0" style="white-space: pre-line" x-text="t.text"></p></td>
+										<td><p class="ancient-lang fs-2 mb-0 p-0" style="white-space: pre-line"><template x-for="g in t.text"><span x-text="g" x-on:click="translationFilter=g"></span></template></p></td>
 										<td><template x-for="c in t.translated"><span class="p-0" x-html="c"></span></template></td>
 									</tr>
 								</template>
