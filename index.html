@@ -685,11 +685,19 @@
 			}
 			
 			function data() {
+				
+				let translationAlphabet = [];
+				index = 1;
+				for (let g of texts().allGlyphs) {
+					translationAlphabet.push({glyph: g, translation: '', index});
+					index++;
+				}
+				
 				const d = {
 					searchText: '',
 					translationFilter: '',
 					texts: texts(),
-					translationAlphabet: texts().allGlyphs.map(x => { return {glyph: x, translation: ''}; } ),
+					translationAlphabet,
 					get filteredTranslationAlphabet() {
 						if (this.translationFilter === '') return this.translationAlphabet;
 						return this.translationAlphabet.filter(x => x.glyph.includes(this.translationFilter)); 
@@ -720,7 +728,7 @@
 			<div class="row">
 				<div class="col">
 					<h1>Phantom Abyss Language Translation Tool</h1>
-					<h6>v0.2 alpha</h6>
+					<h6>v0.2.1 alpha</h6>
 				</div>
 			</div>
 			<div class="row mb-2">
@@ -758,11 +766,11 @@
 									</tr>
 								</thead>
 								<tbody>
-								<template x-for="(g, index) in filteredTranslationAlphabet">
+								<template x-for="g in filteredTranslationAlphabet">
 									<tr>
 										<td class="border-0 pb-0">
 											<div class="input-group">
-												<span class="input-group-text fs-6 p-1 number-alphabet-label" x-text="formatGlyphNum(index+1)""></span>
+												<span class="input-group-text fs-6 p-1 number-alphabet-label" x-text="formatGlyphNum(g.index)""></span>
 												<span class="input-group-text ancient-lang fs-3 p-1 glyph-alphabet-label" x-text="g.glyph"></span>
 												<input type="text" class="form-control p-1" x-model="g.translation" x-on:input="storeTranslations(translationAlphabet)">
 											</div>
