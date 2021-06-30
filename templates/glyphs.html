@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Glyphs{% endblock %}
+{% block extra_styles %}
+<style>
+	.alphabet-table {
+		margin-top: 30px;
+		vertical-align: middle;
+		text-align: center;
+	}
+	
+	.glyph-cell {
+		overflow-x: hidden;	
+		padding-top: 2rem!important;
+	}
+	
+	.reason-cell {
+		white-space: pre-line;
+	}
+	
+	.breakdown-cell {
+		white-space: pre-line;
+	}
+	
+	.glyph-anchor-container {
+		position: relative;
+	}
+	
+	.glyph-anchor-target {
+		position: absolute;
+		top: -120px;
+	}
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="page-header">
+		<div class="row">
+		  <div class="col-lg-8 col-md-7 col-sm-6">
+			<h1>Glyph Handbook</h1>
+			<p class="lead">Here you can find the meanings of the glyphs of the ancient language, alongside a breakdown of their visual meaning and the reasons we believe they mean what they mean. For some glyphs, we aren't sure what the meaning is yet and they are marked as X.</p>
+		  </div>
+		</div>
+	</div>
+  
+  <table class="table table-hover alphabet-table table-dark table-striped">
+		<thead>
+		  <tr>
+			<th scope="col">Glyph Number</th>
+			<th scope="col">Glyph</th>
+			<th scope="col">Meaning</th>
+			<th scope="col">Breakdown</th>
+			<th scope="col">Reasoning</th>
+		  </tr>
+		</thead>
+		<tbody>
+			{% for glyph in glyphs %}
+			  <tr>
+				<th scope="row">
+					<div class="glyph-anchor-container"><div class="glyph-anchor-target" id="glyph_{{ glyph.number}}"></div></div>
+					#{{ glyph.number }}
+				</th>
+				<td class="ancient-language glyph-cell"><h1 class="glyph">{{ glyph.glyph }}</h1></td>
+				<td>
+					{{ glyph.meaning }}
+					{% if glyph.meaning == "" %}
+						<span class="badge rounded-pill bg-light">Currently Unknown</span>
+					{% elif glyph.status == "Disputed" %}
+						<br><span class="badge rounded-pill bg-danger">Disputed</span>
+					{% elif glyph.status != "Agreed" %}
+						<br><span class="badge rounded-pill bg-secondary">Tentative</span>
+					{% endif %}
+				</td>
+				<td class="breakdown-cell">{{ glyph.breakdown }}</td>
+				<td class="reason-cell">{{ glyph.reason | replace_glyph_references | safe}}</td>
+			  </tr>
+			{% endfor %}
+		</tbody>
+	  </table>
+	  
+	  <div>
+	  Updated at: {{ at.strftime('%Y-%m-%d %H:%M:%S') }} UTC
+	  </div>
+</div>
+
+{% endblock %}
