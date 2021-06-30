@@ -537,7 +537,10 @@
 						"\u0170", "\u0171",                     "\u0174", "\u0175", "\u0176", "\u0177", "\u0178", "\u0179", "\u017a", "\u017b", "\u017c", "\u017d", "\u017e", "\u017f",
 						"\u0180",                                                                                           "\u018a", "\u018b", "\u018c", "\u018d",
 								  "\u0191",                                                   "\u0197", "\u0198", "\u0199", "\u019a"
-					]
+					],
+					conceptSeparators: ['Ē','ĕ','>','»','Á','Ñ','Ò','ò','Ć','ē','Ĕ','ĕ','Ė','ě','Ĝ','ĝ','ı','Ĳ','ĳ','Ĵ','œ','\n'],
+					verbSignifers: ['Ē','ē','Ĕ','ě','Ĝ','ĝ','ı','Ĳ','ĳ'],
+					ignoredGlyphs: ['Ɗ','Ɨ','Ƌ',' ']
 				};
 			}
 		</script>
@@ -650,6 +653,76 @@
 				document.body.removeChild(element);
 			}
 			
+			function initFilterHighlightText(text) {
+				const out = [];
+				for (let i=0; i < text.length; i++) {
+					out.push({ char: text[i], highlight: false} );
+				}
+				return out;
+			}
+			
+			function filterHighlightString(text, searchString) {
+				let matchBuildup = [];
+				let matchIndex = 0;
+				let found = false;
+				
+				for (t of text) {
+					if (t.char == searchString[matchIndex]) {
+						matchIndex += 1;
+						matchBuildup.push(t);
+						
+						if ( matchIndex == searchString.length ) {
+							for (mb of matchBuildup) {
+								mb.highlight = true;		
+							}
+							
+							matchBuildup = [];
+							matchIndex = 0;
+							found = true;
+						}
+					}
+				}
+				
+				return found;
+			}
+			
+			function filterHighlightCompoundConcept(text, consecutiveConcepts, verbOnly, texts) {
+				let counter=0;
+				let verbStarted=false;
+				
+				let matchBuildup = [];
+				let found = false;
+				
+				for ( let i = 0; i < text.length; i++ ) {
+					if ( texts.ignoredGlyphs.includes(text[i].char) ) {
+						continue;
+					}
+					if ( texts.conceptSeparators.includes(text[i].char) ) {
+						counter = 0;
+						
+						if ( texts.verbSignifers.includes(text[i].char)) {
+							verbStarted = true;
+						} else {
+							verbStarted = false;
+						}
+						
+						matchBuildup = [];
+					} else {
+						matchBuildup.push(text[i]);
+						counter++;
+					}
+					if ( counter >= consecutiveConcepts && (!verbOnly || verbStarted)) {
+						for (mb of matchBuildup) {
+							mb.highlight = true;		
+						}
+						
+						found = true;
+						matchBuildup = [];
+					}
+				}
+				return found;
+			}
+			
 			function data() {
 				
 				let translationAlphabet = [];
@@ -670,13 +743,16 @@
 					},
 					get allTexts() { return Object.values(this.texts.HubTexts).concat(Object.values(this.texts.WallTexts)); },
 					get filteredTexts() {
-						if (this.searchText === '') return this.allTexts;
-						return this.allTexts.filter(x => x.text.includes(this.searchText));
+						let filtered = this.allTexts.map(x => { return {...x, highlight: initFilterHighlightText(x.text)}; } );
+						if ( this.searchText !== '') filtered = filtered.filter(x => filterHighlightString(x.highlight, this.searchText));
+						if ( this.findCompoundConcepts ) filtered = filtered.filter(x => filterHighlightCompoundConcept(x.highlight, 3, true, texts()));
+						return filtered;
 					},
 					get translatedFilteredTexts() {
 						const translationMap = buildTranslationMap(this.translationAlphabet);
 						return this.filteredTexts.map(x => { return {...x, translated: translateText(x.text, translationMap)}; });
-					}
+					},
+					findCompoundConcepts: false,
 				};
 				initTranslationsIfNeeded(d.translationAlphabet);
 				return d;
@@ -694,7 +770,7 @@
 			<div class="row">
 				<div class="col">
 					<h1>Phantom Abyss Language Translation Tool</h1>
-					<h6>v0.2.5 alpha</h6>
+					<h6>v0.3.0 alpha</h6>
 				</div>
 			</div>
 			<div class="row mb-2">
@@ -778,7 +854,11 @@
 					</div>
 					<div class="row">
 						<div class="col input-group">
-							<span class="input-group-text">Filter</span>
+							<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Filter</button>
+							  <ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#" x-on:click="findCompoundConcepts=!findCompoundConcepts">Only With Compound Concepts (3+ parts)</a></li>
+							  </ul>
+							<template x-if="findCompoundConcepts"><span class="input-group-text"  x-on:click="findCompoundConcepts=!findCompoundConcepts">Only With Compound Concepts (3+ concepts)</div></template>
 							<input type="text" class="form-control ancient-lang" x-model="searchText">
 						</div>
 					</div>
@@ -795,7 +875,7 @@
 								<template x-for="t in translatedFilteredTexts" :key="t.where+t.index">
 									<tr class="border-bottom border-dark">
 										<td class="bg-light"><span x-text="t.where"></span>&nbsp;<span x-text="t.index"></span></td>
-										<td><p class="ancient-lang fs-2 mb-0 p-0" style="white-space: pre-line"><template x-for="g in t.text"><span x-text="g" x-on:click="translationFilter=g"></span></template></p></td>
+										<td><p class="ancient-lang fs-2 mb-0 p-0" style="white-space: pre-line"><template x-for="g in t.highlight"><span x-text="g.char" x-on:click="translationFilter=g.char" :class="{'bg-warning': g.highlight}"></span></template></p></td>
 										<td><template x-for="c in t.translated"><span class="p-0" x-html="c.html" x-on:click="translationFilter=c.glyph"></span></template></td>
 									</tr>
 								</template>
@@ -808,5 +888,6 @@
 
 		<!-- mix-ins -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		
 	</body>
 </html>
