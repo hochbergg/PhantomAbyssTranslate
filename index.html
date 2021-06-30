@@ -745,14 +745,14 @@
 					get filteredTexts() {
 						let filtered = this.allTexts.map(x => { return {...x, highlight: initFilterHighlightText(x.text)}; } );
 						if ( this.searchText !== '') filtered = filtered.filter(x => filterHighlightString(x.highlight, this.searchText));
-						if ( this.findCompoundConcepts ) filtered = filtered.filter(x => filterHighlightCompoundConcept(x.highlight, 3, true, texts()));
+						if ( this.findCompoundVerbs ) filtered = filtered.filter(x => filterHighlightCompoundConcept(x.highlight, 3, true, texts()));
 						return filtered;
 					},
 					get translatedFilteredTexts() {
 						const translationMap = buildTranslationMap(this.translationAlphabet);
 						return this.filteredTexts.map(x => { return {...x, translated: translateText(x.text, translationMap)}; });
 					},
-					findCompoundConcepts: false,
+					findCompoundVerbs: false,
 				};
 				initTranslationsIfNeeded(d.translationAlphabet);
 				return d;
@@ -856,9 +856,9 @@
 						<div class="col input-group">
 							<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Filter</button>
 							  <ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#" x-on:click="findCompoundConcepts=!findCompoundConcepts">Only With Compound Concepts (3+ parts)</a></li>
+								<li><a class="dropdown-item" href="#" x-on:click="findCompoundVerbs=!findCompoundVerbs">Only With Compound Verbs (3+ parts)</a></li>
 							  </ul>
-							<template x-if="findCompoundConcepts"><span class="input-group-text"  x-on:click="findCompoundConcepts=!findCompoundConcepts">Only With Compound Concepts (3+ concepts)</div></template>
+							<template x-if="findCompoundVerbs"><span class="input-group-text"  x-on:click="findCompoundVerbs=!findCompoundVerbs">Only With Compound Verbs (3+ concepts)</div></template>
 							<input type="text" class="form-control ancient-lang" x-model="searchText">
 						</div>
 					</div>
