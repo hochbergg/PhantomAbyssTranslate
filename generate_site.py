@@ -18,8 +18,8 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 # The ID and range of a sample spreadsheet.
 SPREADSHEET_ID = '12w1foShEkiWhKd1ktgwWi8zJv9icKjuQVwRCe17_SVg'
 GLYPHS_RANGE_NAME = "'Proposed Definitions (Glyphs)'!A1:J264"
-HUB_TEXTS_RANGE_NAME = "'Writings (Hub)'!A1:P28"
-WALL_TEXTS_RANGE_NAME = "'Writings (Wall)'!A1:P68"
+HUB_TEXTS_RANGE_NAME = "'Hub (Writings)'!A1:P28"
+WALL_TEXTS_RANGE_NAME = "'Wall (Writings)'!A1:P68"
 
 def download_sheet_data(range):
 	"""Shows basic usage of the Sheets API.
@@ -29,18 +29,18 @@ def download_sheet_data(range):
 	# The file token.json stores the user's access and refresh tokens, and is
 	# created automatically when the authorization flow completes for the first
 	# time.
-	if os.path.exists('tmp/token.json'):
-		creds = Credentials.from_authorized_user_file('tmp/token.json', SCOPES)
+	if os.path.exists('credentials/token.json'):
+		creds = Credentials.from_authorized_user_file('credentials/token.json', SCOPES)
 	# If there are no (valid) credentials available, let the user log in.
 	if not creds or not creds.valid:
 		if creds and creds.expired and creds.refresh_token:
 			creds.refresh(Request())
 		else:
 			flow = InstalledAppFlow.from_client_secrets_file(
-				'tmp/credentials.json', SCOPES)
+				'credentials/credentials.json', SCOPES)
 			creds = flow.run_local_server(port=0)
 		# Save the credentials for the next run
-		with open('tmp/token.json', 'w') as token:
+		with open('credentials/token.json', 'w') as token:
 			token.write(creds.to_json())
 
 	service = build('sheets', 'v4', credentials=creds)
@@ -198,10 +198,10 @@ FILES_TO_COPY = ['AncientLanguage.otf', 'hovers.js', 'solar.bootstrap.min.css', 
 
 global glyphs
 if __name__ == '__main__':
-	#texts = load_texts()
-	#download_glyphs('tmp/glyphs.json')
-	#download_texts('tmp/wall_texts.json', WALL_TEXTS_RANGE_NAME, texts['WallTexts'])
-	#download_texts('tmp/hub_texts.json', HUB_TEXTS_RANGE_NAME, texts['HubTexts'])
+	texts = load_texts()
+	download_glyphs('tmp/glyphs.json')
+	download_texts('tmp/wall_texts.json', WALL_TEXTS_RANGE_NAME, texts['WallTexts'])
+	download_texts('tmp/hub_texts.json', HUB_TEXTS_RANGE_NAME, texts['HubTexts'])
 	glyphs = load_json_file('tmp/glyphs.json')
 	hubs = load_json_file('tmp/hub_texts.json')
 	walls = load_json_file('tmp/wall_texts.json')
