@@ -841,7 +841,7 @@
 						if ( this.searchText !== '') {
 							if (this.findAnyOf) filtered = filtered.filter(x => filterHighlightAnyOf(x.highlight, this.searchText, textData, this.findIgnoreNamesAndDates));
 							else if ( this.findAllOf) filtered = filtered.filter(x => filterHighlightAllOf(x.highlight, this.searchText, textData, this.findIgnoreNamesAndDates));
-							else if ( this.findExactString) filtered = filtered.filter(x => filterHighlightString(x.highlight, this.searchText, textData, this.findIgnoreNamesAndDates));
+							else filtered = filtered.filter(x => filterHighlightString(x.highlight, this.searchText, textData, this.findIgnoreNamesAndDates));
 						}
 						if ( this.findCompoundVerbs ) filtered = filtered.filter(x => filterHighlightCompoundConcept(x.highlight, 3, true, textData));
 						return filtered;
