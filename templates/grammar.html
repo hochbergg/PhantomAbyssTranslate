@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Grammar{% endblock %}
+{% block extra_styles %}
+<style>
+	.glyph-link {
+		font-size: 1.3rem;
+		text-decoration: none;
+	}
+	
+	.hovered {
+		background-color: #b58900;
+	}
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="page-header">
+		<div class="row">
+			<div class="px-4 pt-5 my-5 text-center">
+			<div class="overflow-hidden" style="max-height: 30vh;">
+			  <div class="container px-5">
+				<img src="hero.png" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Phantom Abyss Language" width="700" height="500" loading="lazy">
+			  </div>
+			</div>
+		  </div>
+		  
+		  <div class="col-lg-8 col-md-7 col-sm-6">
+			<h1>Language Grammar</h1>
+			<p class="lead">A Language grammar guide will be here at some point.
+			</p>
+		  </div>
+		</div>
+	</div>
+</div>
+{% include 'hovers.html' %}
+{% endblock %}

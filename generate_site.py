@@ -210,6 +210,7 @@ if __name__ == '__main__':
 	render_glyphs_page(hubs, walls, glyphs)
 	render_template('index.html', {'glyphs': glyphs['glyphs']})
 	render_template('about.html', {'glyphs': glyphs['glyphs']})
+	render_template('grammar.html', {'glyphs': glyphs['glyphs']})
 	
 	for f in FILES_TO_COPY:
 		copy_file_to_dist(f)
