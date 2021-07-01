@@ -17,6 +17,10 @@
 		white-space: pre-line;
 	}
 	
+	.meaning-cell {
+		white-space: pre-line;
+	}
+	
 	.breakdown-cell {
 		white-space: pre-line;
 	}
@@ -28,6 +32,24 @@
 	.glyph-anchor-target {
 		position: absolute;
 		top: -120px;
+	}
+	
+	.single-glyph {
+		position: absolute;
+	}
+	
+	.single-glyph-container {
+		position: relative;
+		margin-right: 2rem;
+	}
+	
+	.glyph-link {
+		font-size: 1.3rem;
+		text-decoration: none;
+	}
+	
+	.hovered {
+		background-color: #b58900;
 	}
 </style>
 {% endblock %}
@@ -60,18 +82,18 @@
 					#{{ glyph.number }}
 				</th>
 				<td class="ancient-language glyph-cell"><h1 class="glyph">{{ glyph.glyph }}</h1></td>
-				<td>
+				<td class="meaning-cell">
 					{{ glyph.meaning }}
-					{% if glyph.meaning == "" %}
+					{%- if glyph.meaning == "" -%}
 						<span class="badge rounded-pill bg-light">Currently Unknown</span>
-					{% elif glyph.status == "Disputed" %}
+					{%- elif glyph.status == "Disputed" -%}
 						<br><span class="badge rounded-pill bg-danger">Disputed</span>
-					{% elif glyph.status != "Agreed" %}
+					{%- elif glyph.status != "Agreed" -%}
 						<br><span class="badge rounded-pill bg-secondary">Tentative</span>
-					{% endif %}
+					{%- endif -%}
 				</td>
 				<td class="breakdown-cell">{{ glyph.breakdown }}</td>
-				<td class="reason-cell">{{ glyph.reason | replace_glyph_references | safe}}</td>
+				<td class="reason-cell">{{ glyph.reason | replace_glyph_references | replace_text_references | safe}}</td>
 			  </tr>
 			{% endfor %}
 		</tbody>
@@ -81,5 +103,5 @@
 	  Updated at: {{ at.strftime('%Y-%m-%d %H:%M:%S') }} UTC
 	  </div>
 </div>
-
+{% include 'hovers.html' %}
 {% endblock %}

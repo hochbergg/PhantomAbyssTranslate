@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block extra_styles %}
+<style>
+	.text-table {
+		margin-top: 30px;
+		vertical-align: middle;
+		text-align: center;
+	}
+	
+	.text-cell {
+		text-align: left;
+		white-space: pre-line;
+	}
+	
+	.translation-cell {
+		white-space: pre-line;
+		text-align: left;
+	}
+	
+	.literal-translation-cell {
+		white-space: pre-line;
+		text-align: left;
+	}
+	
+	.anchor-container {
+		position: relative;
+	}
+	
+	.anchor-target {
+		position: absolute;
+		top: -200px;
+	}
+	
+	.glyph-link {
+		text-decoration: none;
+	}
+	
+	.hovered {
+		background-color: #b58900;
+	}
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="page-header">
+		<div class="row">
+		  <div class="col-lg-8 col-md-7 col-sm-6">
+			<h1>Treasure Wall Texts</h1>
+			<p class="lead">Here you can find the meanings of the glyphs of the ancient language, alongside a breakdown of their visual meaning and the reasons we believe they mean what they mean. For some glyphs, we aren't sure what the meaning is yet and they are marked as X.</p>
+		  </div>
+		</div>
+	</div>
+  
+  <table class="table table-hover text-table table-dark table-striped">
+		<thead>
+		  <tr>
+			<th scope="col">Panel Number</th>
+			<th scope="col">Writing</th>
+			<th scope="col">Literal Translation</th>
+			<th scope="col">Interpretation</th>
+		  </tr>
+		</thead> 
+		<tbody>
+			{% for text in texts %}
+			  <tr>
+				<th scope="row">
+					<div class="anchor-container"><div class="anchor-target" id="text_{{ text.number}}"></div></div>
+					{{ text.number }}
+				</th>
+				<td class="ancient-language text-cell h2">{{ text.text.text | augment_glyphs | safe }}</td>
+				<td class="literal-translation-cell">
+					{%- if text.literal_translation == "" -%}
+						<span class="badge rounded-pill bg-light">Not yet translated</span>
+					{%- endif -%}
+					{{ text.literal_translation }}
+				</td>
+				<td class="translation-cell">{{ text.translation | trim }}
+					{%- if text.translation == "" -%}
+						<span class="badge rounded-pill bg-light">Not yet translated</span>
+					{%- elif text.status != "Accepted Translation" -%}
+						<br><span class="badge rounded-pill bg-secondary">Tentative</span>
+					{%- endif -%}
+				</td>
+			  </tr>
+			{% endfor %}
+		</tbody>
+	  </table>
+	  
+	  <div>
+	  Updated at: {{ at.strftime('%Y-%m-%d %H:%M:%S') }} UTC
+	  </div>
+</div>
+{% include 'hovers.html' %}
+{% endblock %}

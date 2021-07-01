@@ -1,0 +1,78 @@
+<style>
+	.hover-card {
+		position: fixed; top: 0; left:0; pointer-events: none; visibility: hidden; 
+	}
+	
+	.hover-card.show {
+		visibility: visible;
+	}
+	
+	.glyph-card-body {
+		text-align: center;
+	}
+	
+	.text-hover-cell {
+		white-space: pre-line;
+	}
+	
+	.translation-hover-cell {
+		white-space: pre-line;
+	}
+</style>
+	
+{% for glyph in glyphs %}
+<div class="card text-white bg-secondary hover-card" id="glyph_{{ glyph.number}}_hover" style="">
+	<div class="card-body hover-card-body">{{ glyph.meaning }}
+		{%- if glyph.meaning == "" -%}
+		<span class="badge rounded-pill bg-light">Currently Unknown</span>
+		{%- elif glyph.status == "Disputed" -%}
+			<br><span class="badge rounded-pill bg-danger">Disputed</span>
+		{%- elif glyph.status != "Agreed" -%}
+			<br><span class="badge rounded-pill bg-light">Tentative</span>
+		{%- endif -%}
+	</div>
+</div>
+{% endfor %}
+
+
+{% for text in walls %}
+<div class="card text-white bg-secondary hover-card" id="wall_{{ text.number}}_hover" style="">
+	<div class="card-body hover-card-body">
+		<div class="row align-items-start">
+			<div class="col">
+			  <div class="ancient-language text-hover-cell h2">{{ text.text.text }}</div>
+			</div>
+			<div class="col">
+			  <div class="translation-hover-cell">{{ text.translation | trim }}
+					{%- if text.translation == "" -%}
+						<span class="badge rounded-pill bg-light">Not yet translated</span>
+					{%- elif text.status != "Accepted Translation" -%}
+						<br><span class="badge rounded-pill bg-light">Tentative</span>
+					{%- endif -%}
+				</div>
+			</div>
+		  </div>
+	</div>
+</div>
+{% endfor %}
+
+{% for text in hubs %}
+<div class="card text-white bg-secondary hover-card" id="hub_{{ text.number}}_hover" style="">
+	<div class="card-body hover-card-body">
+		<div class="row align-items-start">
+			<div class="col">
+			  <div class="ancient-language text-hover-cell h2">{{ text.text.text }}</div>
+			</div>
+			<div class="col">
+			  <div class="translation-hover-cell">{{ text.translation | trim }}
+					{%- if text.translation == "" -%}
+						<span class="badge rounded-pill bg-light">Not yet translated</span>
+					{%- elif text.status != "Accepted Translation" -%}
+						<br><span class="badge rounded-pill bg-light">Tentative</span>
+					{%- endif -%}
+				</div>
+			</div>
+		  </div>
+	</div>
+</div>
+{% endfor %}
