@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block full_title %}Phantom Abyss Ancient Language{% endblock %}
+{% block extra_styles %}
+<style>
+	.glyph-link {
+		font-size: 1.3rem;
+		text-decoration: none;
+	}
+	
+	.hovered {
+		background-color: #b58900;
+	}
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="page-header">
+		<div class="row">
+		  <div class="col-lg-8 col-md-7 col-sm-6">
+			<h1>About this site</h1>
+			<p class="lead">This site was the joint effort of a bunch of people in a chatroom on the internet who love <a href="https://www.phantomabyss.com">Phantom Abyss</a> and riddles.<br>
+			<br>
+			The team:<br>
+			- @SomePerson - Did Something<br>
+			<br>
+			And of course <a href="https://twitter.com/willitbeyougame">Team WIBY</a> who made Phantom Abyss and @Sirwol who invented the language.<br>
+			<br>
+			<span class="ancient-language">{{ "BTĒaĕPę´\n" }}</span>
+			</p>
+		  </div>
+		</div>
+	</div>
+</div>
+{% include 'hovers.html' %}
+{% endblock %}

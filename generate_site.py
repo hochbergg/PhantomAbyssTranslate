@@ -10,6 +10,7 @@ import time
 import re
 import datetime
 import html
+import shutil
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
@@ -28,18 +29,18 @@ def download_sheet_data(range):
 	# The file token.json stores the user's access and refresh tokens, and is
 	# created automatically when the authorization flow completes for the first
 	# time.
-	if os.path.exists('token.json'):
-		creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+	if os.path.exists('tmp/token.json'):
+		creds = Credentials.from_authorized_user_file('tmp/token.json', SCOPES)
 	# If there are no (valid) credentials available, let the user log in.
 	if not creds or not creds.valid:
 		if creds and creds.expired and creds.refresh_token:
 			creds.refresh(Request())
 		else:
 			flow = InstalledAppFlow.from_client_secrets_file(
-				'credentials.json', SCOPES)
+				'tmp/credentials.json', SCOPES)
 			creds = flow.run_local_server(port=0)
 		# Save the credentials for the next run
-		with open('token.json', 'w') as token:
+		with open('tmp/token.json', 'w') as token:
 			token.write(creds.to_json())
 
 	service = build('sheets', 'v4', credentials=creds)
@@ -188,17 +189,27 @@ def render_hub_texts_page(hubs, walls, glyphs):
 	
 def render_wall_texts_page(hubs, walls, glyphs):
 	render_template('wall_texts.html', {"hubs": hubs['texts'], "walls": walls['texts'], "glyphs": glyphs['glyphs'], "texts": walls['texts'], 'at': datetime.datetime.fromtimestamp(walls['at'])})
+
+def copy_file_to_dist(fname):
+	shutil.copy(fname, 'dist/')
 	
+	
+FILES_TO_COPY = ['AncientLanguage.otf', 'hovers.js', 'solar.bootstrap.min.css', 'tool.html']
+
 global glyphs
 if __name__ == '__main__':
-	#main()
 	#texts = load_texts()
-	#download_glyphs('glyphs.json')
-	#download_texts('wall_texts.json', WALL_TEXTS_RANGE_NAME, texts['WallTexts'])
-	#download_texts('hub_texts.json', HUB_TEXTS_RANGE_NAME, texts['HubTexts'])
-	glyphs = load_json_file('glyphs.json')
-	hubs = load_json_file('hub_texts.json')
-	walls = load_json_file('wall_texts.json')
+	#download_glyphs('tmp/glyphs.json')
+	#download_texts('tmp/wall_texts.json', WALL_TEXTS_RANGE_NAME, texts['WallTexts'])
+	#download_texts('tmp/hub_texts.json', HUB_TEXTS_RANGE_NAME, texts['HubTexts'])
+	glyphs = load_json_file('tmp/glyphs.json')
+	hubs = load_json_file('tmp/hub_texts.json')
+	walls = load_json_file('tmp/wall_texts.json')
 	render_hub_texts_page(hubs, walls, glyphs)
 	render_wall_texts_page(hubs, walls, glyphs)
 	render_glyphs_page(hubs, walls, glyphs)
+	render_template('index.html', {'glyphs': glyphs['glyphs']})
+	render_template('about.html', {'glyphs': glyphs['glyphs']})
+	
+	for f in FILES_TO_COPY:
+		copy_file_to_dist(f)
