@@ -661,7 +661,7 @@
 				return out;
 			}
 			
-			function filterHighlightString(text, searchString) {
+			function filterHighlightString(text, searchString, findAnyOf) {
 				let matchBuildup = [];
 				let matchIndex = 0;
 				let found = false;
@@ -680,10 +680,51 @@
 							matchIndex = 0;
 							found = true;
 						}
+					} else {
+						matchIndex = 0;
+						matchBuildup = [];
 					}
 				}
 				
 				return found;
+			}
+			
+			function filterHighlightAnyOf(text, searchString) {
+				let found = false;
+				
+				for (t of text) {
+					if (searchString.includes(t.char)) {
+						t.highlight = true;
+						found = true;
+					}
+				}
+				
+				return found;
+			}
+			
+			function filterHighlightAllOf(text, searchString) {
+				let found = [];
+				for( let i=0; i < searchString.length; i++) {
+					found[i] = false;
+				}
+				
+				for (t of text) {
+					const id = searchString.indexOf(t.char);
+					if ( id !== -1 ) {
+						t.highlight = true;
+						found[id] = true;
+					}
+				}
+				
+				let allFound = true;
+				for ( const f of found ) {
+					if ( !f ) {
+						allFound = false;
+						break;
+					}
+				}
+				
+				return allFound;
 			}
 			
 			function filterHighlightCompoundConcept(text, consecutiveConcepts, verbOnly, texts) {
@@ -744,7 +785,11 @@
 					get allTexts() { return Object.values(this.texts.HubTexts).concat(Object.values(this.texts.WallTexts)); },
 					get filteredTexts() {
 						let filtered = this.allTexts.map(x => { return {...x, highlight: initFilterHighlightText(x.text)}; } );
-						if ( this.searchText !== '') filtered = filtered.filter(x => filterHighlightString(x.highlight, this.searchText));
+						if ( this.searchText !== '') {
+							if (this.findAnyOf) filtered = filtered.filter(x => filterHighlightAnyOf(x.highlight, this.searchText));
+							else if ( this.findAllOf) filtered = filtered.filter(x => filterHighlightAllOf(x.highlight, this.searchText));
+							else if ( this.findExactString) filtered = filtered.filter(x => filterHighlightString(x.highlight, this.searchText));
+						}
 						if ( this.findCompoundVerbs ) filtered = filtered.filter(x => filterHighlightCompoundConcept(x.highlight, 3, true, texts()));
 						return filtered;
 					},
@@ -753,6 +798,9 @@
 						return this.filteredTexts.map(x => { return {...x, translated: translateText(x.text, translationMap)}; });
 					},
 					findCompoundVerbs: false,
+					findAnyOf: false,
+					findAllOf: false,
+					findExactString: true,
 				};
 				initTranslationsIfNeeded(d.translationAlphabet);
 				return d;
@@ -770,7 +818,7 @@
 			<div class="row">
 				<div class="col">
 					<h1>Phantom Abyss Language Translation Tool</h1>
-					<h6>v0.3.0 alpha</h6>
+					<h6>v0.3.1 alpha</h6>
 				</div>
 			</div>
 			<div class="row mb-2">
@@ -857,8 +905,14 @@
 							<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Filter</button>
 							  <ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="#" x-on:click="findCompoundVerbs=!findCompoundVerbs">Only With Compound Verbs (3+ parts)</a></li>
+								<li><a class="dropdown-item" href="#" x-on:click="findExactString=!findExactString; if(findExactString) { findAllOf = false; findAnyOf=false; }">Exact Sequence</a></li>
+								<li><a class="dropdown-item" href="#" x-on:click="findAnyOf=!findAnyOf; if(findAnyOf) { findAllOf = false; findExactString=false; }">Any one of</a></li>
+								<li><a class="dropdown-item" href="#" x-on:click="findAllOf=!findAllOf; if(findAllOf) { findAnyOf = false; findExactString=false; }">All of</a></li>
 							  </ul>
 							<template x-if="findCompoundVerbs"><span class="input-group-text"  x-on:click="findCompoundVerbs=!findCompoundVerbs">Only With Compound Verbs (3+ concepts)</div></template>
+							<template x-if="findExactString"><span class="input-group-text"  x-on:click="findExactString=!findExactString; if(findExactString) { findAllOf = false; findAnyOf=false; }">Exact Sequence</div></template>
+							<template x-if="findAnyOf"><span class="input-group-text"  x-on:click="findAnyOf=!findAnyOf; if(findAnyOf) { findAllOf = false; findExactString=false; }">Any one of</div></template>
+							<template x-if="findAllOf"><span class="input-group-text"  x-on:click="findAllOf=!findAllOf; if(findAllOf) { findAnyOf = false; findExactString=false; }">All of</div></template>
 							<input type="text" class="form-control ancient-lang" x-model="searchText">
 						</div>
 					</div>
