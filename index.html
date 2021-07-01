@@ -540,7 +540,9 @@
 					],
 					conceptSeparators: ['Ē','ĕ','>','»','Á','Ñ','Ò','ò','Ć','ē','Ĕ','ĕ','Ė','ě','Ĝ','ĝ','ı','Ĳ','ĳ','Ĵ','œ','\n'],
 					verbSignifers: ['Ē','ē','Ĕ','ě','Ĝ','ĝ','ı','Ĳ','ĳ'],
-					ignoredGlyphs: ['Ɗ','Ɨ','Ƌ',' ']
+					ignoredGlyphs: ['Ɗ','Ɨ','Ƌ',' '],
+					nameOrDateStart: ['Ɗ','Ɨ','Ƌ'],
+					nameOrDateEnd: [' '],
 				};
 			}
 		</script>
@@ -661,12 +663,29 @@
 				return out;
 			}
 			
-			function filterHighlightString(text, searchString, findAnyOf) {
+			function filterHighlightString(text, searchString, texts, findIgnoreNamesAndDates) {
 				let matchBuildup = [];
 				let matchIndex = 0;
 				let found = false;
+				let inNameOrDate = false;
 				
 				for (t of text) {
+					if ( findIgnoreNamesAndDates ) {
+						if ( texts.nameOrDateStart.includes(t.char) ) {
+							inNameOrDate = true;
+							matchBuildup = [];
+							matchIndex = 0;
+							continue;
+						}
+						
+						if ( inNameOrDate ) {
+							if ( texts.nameOrDateEnd.includes(t.char) ) {
+								inNameOrDate = false;	
+							}
+							continue;	
+						}
+					}
+						
 					if (t.char == searchString[matchIndex]) {
 						matchIndex += 1;
 						matchBuildup.push(t);
@@ -689,10 +708,25 @@
 				return found;
 			}
 			
-			function filterHighlightAnyOf(text, searchString) {
+			function filterHighlightAnyOf(text, searchString, texts, findIgnoreNamesAndDates) {
 				let found = false;
+				let inNameOrDate = false;
 				
 				for (t of text) {
+					if ( findIgnoreNamesAndDates ) {
+						if ( texts.nameOrDateStart.includes(t.char) ) {
+							inNameOrDate = true;
+							continue;
+						}
+						
+						if ( inNameOrDate ) {
+							if ( texts.nameOrDateEnd.includes(t.char) ) {
+								inNameOrDate = false;	
+							}
+							continue;	
+						}	
+					}
+					
 					if (searchString.includes(t.char)) {
 						t.highlight = true;
 						found = true;
@@ -702,13 +736,27 @@
 				return found;
 			}
 			
-			function filterHighlightAllOf(text, searchString) {
+			function filterHighlightAllOf(text, searchString, texts, findIgnoreNamesAndDates) {
 				let found = [];
 				for( let i=0; i < searchString.length; i++) {
 					found[i] = false;
 				}
 				
 				for (t of text) {
+					if ( findIgnoreNamesAndDates ) {
+						if ( texts.nameOrDateStart.includes(t.char) ) {
+							inNameOrDate = true;
+							continue;
+						}
+						
+						if ( inNameOrDate ) {
+							if ( texts.nameOrDateEnd.includes(t.char) ) {
+								inNameOrDate = false;	
+							}
+							continue;	
+						}
+					}
+					
 					const id = searchString.indexOf(t.char);
 					if ( id !== -1 ) {
 						t.highlight = true;
@@ -768,15 +816,20 @@
 				
 				let translationAlphabet = [];
 				index = 1;
-				for (let g of texts().allGlyphs) {
+				
+				const textData = texts();
+				
+				for (let g of textData.allGlyphs) {
 					translationAlphabet.push({glyph: g, translation: '', index});
 					index++;
 				}
 				
+				
+				
 				const d = {
 					searchText: '',
 					translationFilter: '',
-					texts: texts(),
+					texts: textData,
 					translationAlphabet,
 					get filteredTranslationAlphabet() {
 						if (this.translationFilter === '') return this.translationAlphabet;
@@ -786,11 +839,11 @@
 					get filteredTexts() {
 						let filtered = this.allTexts.map(x => { return {...x, highlight: initFilterHighlightText(x.text)}; } );
 						if ( this.searchText !== '') {
-							if (this.findAnyOf) filtered = filtered.filter(x => filterHighlightAnyOf(x.highlight, this.searchText));
-							else if ( this.findAllOf) filtered = filtered.filter(x => filterHighlightAllOf(x.highlight, this.searchText));
-							else if ( this.findExactString) filtered = filtered.filter(x => filterHighlightString(x.highlight, this.searchText));
+							if (this.findAnyOf) filtered = filtered.filter(x => filterHighlightAnyOf(x.highlight, this.searchText, textData, this.findIgnoreNamesAndDates));
+							else if ( this.findAllOf) filtered = filtered.filter(x => filterHighlightAllOf(x.highlight, this.searchText, textData, this.findIgnoreNamesAndDates));
+							else if ( this.findExactString) filtered = filtered.filter(x => filterHighlightString(x.highlight, this.searchText, textData, this.findIgnoreNamesAndDates));
 						}
-						if ( this.findCompoundVerbs ) filtered = filtered.filter(x => filterHighlightCompoundConcept(x.highlight, 3, true, texts()));
+						if ( this.findCompoundVerbs ) filtered = filtered.filter(x => filterHighlightCompoundConcept(x.highlight, 3, true, textData));
 						return filtered;
 					},
 					get translatedFilteredTexts() {
@@ -801,6 +854,7 @@
 					findAnyOf: false,
 					findAllOf: false,
 					findExactString: true,
+					findIgnoreNamesAndDates: false,
 				};
 				initTranslationsIfNeeded(d.translationAlphabet);
 				return d;
@@ -818,7 +872,7 @@
 			<div class="row">
 				<div class="col">
 					<h1>Phantom Abyss Language Translation Tool</h1>
-					<h6>v0.3.1 alpha</h6>
+					<h6>v0.3.2 alpha</h6>
 				</div>
 			</div>
 			<div class="row mb-2">
@@ -905,11 +959,14 @@
 							<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Filter</button>
 							  <ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="#" x-on:click="findCompoundVerbs=!findCompoundVerbs">Only With Compound Verbs (3+ parts)</a></li>
+								<li><a class="dropdown-item" href="#" x-on:click="findIgnoreNamesAndDates=!findIgnoreNamesAndDates">Ignore Names and Dates</a></li>
 								<li><a class="dropdown-item" href="#" x-on:click="findExactString=!findExactString; if(findExactString) { findAllOf = false; findAnyOf=false; }">Exact Sequence</a></li>
 								<li><a class="dropdown-item" href="#" x-on:click="findAnyOf=!findAnyOf; if(findAnyOf) { findAllOf = false; findExactString=false; }">Any one of</a></li>
 								<li><a class="dropdown-item" href="#" x-on:click="findAllOf=!findAllOf; if(findAllOf) { findAnyOf = false; findExactString=false; }">All of</a></li>
+								<li><a class="dropdown-item" href="#" x-on:click="findAllOf=!findAllOf; if(findAllOf) { findAnyOf = false; findExactString=false; }">But </a></li>
 							  </ul>
 							<template x-if="findCompoundVerbs"><span class="input-group-text"  x-on:click="findCompoundVerbs=!findCompoundVerbs">Only With Compound Verbs (3+ concepts)</div></template>
+							<template x-if="findIgnoreNamesAndDates"><span class="input-group-text" x-on:click="findIgnoreNamesAndDates=!findIgnoreNamesAndDates">Ignore Names and Dates</div></template>
 							<template x-if="findExactString"><span class="input-group-text"  x-on:click="findExactString=!findExactString; if(findExactString) { findAllOf = false; findAnyOf=false; }">Exact Sequence</div></template>
 							<template x-if="findAnyOf"><span class="input-group-text"  x-on:click="findAnyOf=!findAnyOf; if(findAnyOf) { findAllOf = false; findExactString=false; }">Any one of</div></template>
 							<template x-if="findAllOf"><span class="input-group-text"  x-on:click="findAllOf=!findAllOf; if(findAllOf) { findAnyOf = false; findExactString=false; }">All of</div></template>
