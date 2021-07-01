@@ -16,7 +16,7 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
 # The ID and range of a sample spreadsheet.
 SPREADSHEET_ID = '12w1foShEkiWhKd1ktgwWi8zJv9icKjuQVwRCe17_SVg'
-GLYPHS_RANGE_NAME = "'Suggested Meanings (Glyphs)'!A1:X264"
+GLYPHS_RANGE_NAME = "'Proposed Definitions (Glyphs)'!A1:J264"
 HUB_TEXTS_RANGE_NAME = "'Writings (Hub)'!A1:P28"
 WALL_TEXTS_RANGE_NAME = "'Writings (Wall)'!A1:P68"
 
@@ -58,10 +58,10 @@ def download_glyphs(fname):
 		glyphs.append({
 			"number": r[0],
 			"glyph": r[1],
-			"status": r[15],
-			"meaning": r[16],
-			"reason": r[17],
-			"breakdown": r[12],
+			"status": r[8],
+			"meaning": r[4],
+			"reason": r[5],
+			"breakdown": r[3],
 		})
 	
 	with open(fname,'w') as f:
