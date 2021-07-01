@@ -82,9 +82,9 @@ def download_texts(fname, range_str, text_data):
 		texts.append({
 			"number": i,
 			"text": text_data[str(i)],
-			"status": values[i][11],
-			"literal_translation": values[i][12],
-			"translation": values[i][13],
+			"status": values[i][11] if len(values[i]) > 11 else '',
+			"literal_translation": values[i][12]  if len(values[i]) > 12 else '',
+			"translation": values[i][13]  if len(values[i]) > 13 else '',
 		})
 	
 	with open(fname,'w') as f:
@@ -198,13 +198,13 @@ FILES_TO_COPY = ['AncientLanguage.otf', 'hovers.js', 'solar.bootstrap.min.css', 
 
 global glyphs
 if __name__ == '__main__':
-	# texts = load_texts()
-	# download_glyphs('tmp/glyphs.json')
-	# download_texts('tmp/wall_texts.json', WALL_TEXTS_RANGE_NAME, texts['WallTexts'])
-	# download_texts('tmp/hub_texts.json', HUB_TEXTS_RANGE_NAME, texts['HubTexts'])
-	# glyphs = load_json_file('tmp/glyphs.json')
-	# hubs = load_json_file('tmp/hub_texts.json')
-	# walls = load_json_file('tmp/wall_texts.json')
+	texts = load_texts()
+	download_glyphs('tmp/glyphs.json')
+	download_texts('tmp/wall_texts.json', WALL_TEXTS_RANGE_NAME, texts['WallTexts'])
+	download_texts('tmp/hub_texts.json', HUB_TEXTS_RANGE_NAME, texts['HubTexts'])
+	glyphs = load_json_file('tmp/glyphs.json')
+	hubs = load_json_file('tmp/hub_texts.json')
+	walls = load_json_file('tmp/wall_texts.json')
 	render_hub_texts_page(hubs, walls, glyphs)
 	render_wall_texts_page(hubs, walls, glyphs)
 	render_glyphs_page(hubs, walls, glyphs)
