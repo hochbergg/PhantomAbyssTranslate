@@ -177,7 +177,7 @@ jinja_env.filters['replace_text_references'] = filter_replace_text_references
 jinja_env.filters['augment_glyphs'] = filter_augment_glyphs
 
 def render_template(name, vars):
-	with open(f'dist/{name}','w') as f:
+	with open(f'docs/{name}','w') as f:
 		template = jinja_env.get_template(name)
 		f.write(template.render(**vars))
 	
@@ -191,7 +191,7 @@ def render_wall_texts_page(hubs, walls, glyphs):
 	render_template('wall_texts.html', {"hubs": hubs['texts'], "walls": walls['texts'], "glyphs": glyphs['glyphs'], "texts": walls['texts'], 'at': datetime.datetime.fromtimestamp(walls['at'])})
 
 def copy_file_to_dist(fname):
-	shutil.copy(fname, 'dist/')
+	shutil.copy(fname, 'docs/')
 	
 	
 FILES_TO_COPY = ['AncientLanguage.otf', 'hovers.js', 'solar.bootstrap.min.css', 'tool.html']
