@@ -38,6 +38,11 @@
 	.hovered {
 		background-color: #b58900;
 	}
+	
+	.self-link {
+		color: white;
+		text-decoration: none;
+	}
 </style>
 {% endblock %}
 {% block content %}
@@ -65,7 +70,7 @@
 			  <tr>
 				<th scope="row">
 					<div class="anchor-container"><div class="anchor-target" id="text_{{ text.number}}"></div></div>
-					{{ text.number }}
+					<a class="self-link" href="{{ page_name }}#text_{{ text.number}}">{{ text.number }}</a>
 				</th>
 				<td class="ancient-language text-cell h2">{{ text.text.text | augment_glyphs | safe }}</td>
 				<td class="literal-translation-cell">

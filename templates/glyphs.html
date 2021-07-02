@@ -51,6 +51,10 @@
 	.hovered {
 		background-color: #b58900;
 	}
+	.self-link {
+		color: white;
+		text-decoration: none;
+	}
 </style>
 {% endblock %}
 {% block content %}
@@ -79,7 +83,8 @@
 			  <tr>
 				<th scope="row">
 					<div class="glyph-anchor-container"><div class="glyph-anchor-target" id="glyph_{{ glyph.number}}"></div></div>
-					#{{ glyph.number }}
+					<a class="self-link" href="glyphs.html#glyph_{{glyph.number}}">#{{ glyph.number }}</a>
+					
 				</th>
 				<td class="ancient-language glyph-cell"><h1 class="glyph">{{ glyph.glyph }}</h1></td>
 				<td class="meaning-cell">

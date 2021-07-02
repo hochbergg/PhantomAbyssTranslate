@@ -82,9 +82,9 @@ def download_texts(fname, range_str, text_data):
 		texts.append({
 			"number": i,
 			"text": text_data[str(i)],
-			"status": values[i][11] if len(values[i]) > 11 else '',
-			"literal_translation": values[i][12]  if len(values[i]) > 12 else '',
-			"translation": values[i][13]  if len(values[i]) > 13 else '',
+			"status": values[i][13] if len(values[i]) > 13 else '',
+			"literal_translation": values[i][9]  if len(values[i]) > 9 else '',
+			"translation": values[i][10]  if len(values[i]) > 10 else '',
 		})
 	
 	with open(fname,'w') as f:
