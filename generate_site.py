@@ -11,6 +11,7 @@ import re
 import datetime
 import html
 import shutil
+from pyquery import PyQuery as pq
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
@@ -192,25 +193,97 @@ def render_wall_texts_page(hubs, walls, glyphs):
 
 def copy_file_to_dist(fname):
 	shutil.copy(fname, 'docs/')
+
+def copy_dir_to_dist(dirname, targetname):
+	if os.path.isdir('docs/'+targetname):
+		shutil.rmtree('docs/'+targetname)
+	shutil.copytree(dirname, 'docs/'+targetname)	
+
+def parse_style(style):
+	stm = {a.strip(): b.strip() for (a,b) in (x.split(':') for x in style.split(';') if len(x.strip()) > 0)}
+	return stm
 	
+def parse_grammar_guide_html(tag):
+	if tag.is_('body'):
+		out = []
+		for c in tag.children():
+			out.append(parse_grammar_guide_html(pq(c)))
+		return {'type': 'body', 'contents': out}
+	
+	elif tag.is_('h1'):
+		return {'type': 'h1', 'text': tag.text(), 'class': tag.attr('class')}
+		
+	elif tag.is_('h2'):
+		return {'type': 'h1', 'text': tag.text(), 'class': tag.attr('class')}
+		
+	elif tag.is_('h3'):
+		return {'type': 'h3', 'text': tag.text(), 'class': tag.attr('class')}
+		
+	elif tag.is_('h4'):
+		return {'type': 'h4', 'text': tag.text(), 'class': tag.attr('class')}
+			
+	elif tag.is_('p'):
+		out = []
+		for c in tag.children():
+			out.append(parse_grammar_guide_html(pq(c)))
+		return {'type': 'paragraph', 'contents': out, 'class': tag.attr('class')}
+		
+	elif tag.is_('ul'):
+		out = []
+		for c in tag.children():
+			out.append(parse_grammar_guide_html(pq(c)))
+		return {'type': 'bullet-list', 'contents': out, 'class': tag.attr('class')}
+		
+	elif tag.is_('li'):
+		out = []
+		for c in tag.children():
+			out.append(parse_grammar_guide_html(pq(c)))
+		return {'type': 'list-item', 'contents': out, 'class': tag.attr('class')}
+		
+	elif tag.is_('span'):
+		image = tag.children('img')
+		if len(image) == 0:
+			return {'type': 'text', 'text': tag.text(), 'class': tag.attr('class')}
+		else:
+			style = parse_style(image.attr['style'])
+			return {'type': 'image', 'url': image.attr['src'], 'width': style['width'], 'height': style['height'], 'class': tag.attr('class')}
+	
+	else:
+		# 'tagname': tag.prop('tagname'), 
+		print("Unknown Tag", tag.outer_html())
+		return {'type': 'unknown', 'html': tag.outer_html()}
+	
+def import_grammar_guide():
+	with open('Phantom Abyss Grammar/PhantomAbyssGrammar.html','r') as f:
+		d = pq(f.read())
+		
+	b = d("body")
+	p = parse_grammar_guide_html(b)
+	
+	return p['contents']
+			
 	
 FILES_TO_COPY = ['AncientLanguage.otf', 'hovers.js', 'solar.bootstrap.min.css', 'tool.html']
 
 global glyphs
 if __name__ == '__main__':
-	texts = load_texts()
-	download_glyphs('tmp/glyphs.json')
-	download_texts('tmp/wall_texts.json', WALL_TEXTS_RANGE_NAME, texts['WallTexts'])
-	download_texts('tmp/hub_texts.json', HUB_TEXTS_RANGE_NAME, texts['HubTexts'])
-	glyphs = load_json_file('tmp/glyphs.json')
-	hubs = load_json_file('tmp/hub_texts.json')
-	walls = load_json_file('tmp/wall_texts.json')
-	render_hub_texts_page(hubs, walls, glyphs)
-	render_wall_texts_page(hubs, walls, glyphs)
-	render_glyphs_page(hubs, walls, glyphs)
-	render_template('index.html', {'glyphs': glyphs['glyphs']})
-	render_template('about.html', {'glyphs': glyphs['glyphs']})
-	render_template('grammar.html', {'glyphs': glyphs['glyphs']})
+	# texts = load_texts()
+	# download_glyphs('tmp/glyphs.json')
+	# download_texts('tmp/wall_texts.json', WALL_TEXTS_RANGE_NAME, texts['WallTexts'])
+	# download_texts('tmp/hub_texts.json', HUB_TEXTS_RANGE_NAME, texts['HubTexts'])
+	# glyphs = load_json_file('tmp/glyphs.json')
+	# hubs = load_json_file('tmp/hub_texts.json')
+	# walls = load_json_file('tmp/wall_texts.json')
+	# render_hub_texts_page(hubs, walls, glyphs)
+	# render_wall_texts_page(hubs, walls, glyphs)
+	# render_glyphs_page(hubs, walls, glyphs)
+	# render_template('index.html', {'glyphs': glyphs['glyphs']})
+	# render_template('about.html', {'glyphs': glyphs['glyphs']})
+	# render_template('grammar.html', {'glyphs': glyphs['glyphs']})
 	
-	for f in FILES_TO_COPY:
-		copy_file_to_dist(f)
+	render_template('grammar.html', {'grammar_body': import_grammar_guide()})
+	copy_dir_to_dist('Phantom Abyss Grammar/images','images')
+	
+	
+	#for f in FILES_TO_COPY:
+		#copy_file_to_dist(f)

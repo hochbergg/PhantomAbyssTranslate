@@ -15,21 +15,49 @@
 {% block content %}
 <div class="container">
 	<div class="page-header">
-		<div class="row">
-			<div class="px-4 pt-5 my-5 text-center">
-			<div class="overflow-hidden" style="max-height: 30vh;">
-			  <div class="container px-5">
-				<img src="hero.png" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Phantom Abyss Language" width="700" height="500" loading="lazy">
-			  </div>
-			</div>
-		  </div>
-		  
+		<div class="row">		  
 		  <div class="col-lg-8 col-md-7 col-sm-6">
 			<h1>Language Grammar</h1>
 			<p class="lead">A Language grammar guide will be here at some point.
 			</p>
 		  </div>
 		</div>
+		
+		{% for c in grammar_body %}
+			{% if c['type'] == 'paragraph' %}
+			<p>
+				{% for cc in c['contents'] %}
+					{% if cc['type'] == 'text' %}
+						{{ cc.text }}
+					{% elif cc['type'] == 'image' %}
+						<image src="{{ cc['url'] }}" style="width: {{ cc['width'] }}; height: {{ cc['height'] }}">
+					{% endif %}
+				{% endfor %}
+			</p>
+			{% elif c['type'] == 'bullet-list' %}
+			<ul>
+				{% for cc in c['contents'] %}
+					{% if cc['type'] == 'list-item' %}
+						{% for cc in c['contents'] %}
+							{% if cc['type'] == 'text' %}
+								{{ cc.text }}
+							{% elif cc['type'] == 'image' %}
+								<image src="{{ cc['url'] }}">
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				{% endfor %}
+			</ul>
+			{% elif c['type'] == 'h1' %}
+			<h1>{{ c .text }}</h1>
+			{% elif c['type'] == 'h2' %}
+			<h2>{{ c.text }}</h2>
+			{% elif c['type'] == 'h3' %}
+			<h3>{{ c.text }}</h3>
+			{% elif c['type'] == 'h4' %}
+			<h4>{{ c.text }}</h4>
+			{% endif %}
+		{% endfor %}
 	</div>
 </div>
 {% include 'hovers.html' %}
