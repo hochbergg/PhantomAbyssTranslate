@@ -79,7 +79,7 @@ def load_texts():
 def download_texts(fname, range_str, text_data):
 	values = download_sheet_data(range_str)
 	texts = []
-	for i in range(1,len(values[1:])):
+	for i in range(1,len(values)):
 		texts.append({
 			"number": i,
 			"text": text_data[str(i)],
@@ -267,19 +267,19 @@ FILES_TO_COPY = ['AncientLanguage.otf', 'hovers.js', 'solar.bootstrap.min.css', 
 
 global glyphs
 if __name__ == '__main__':
-	# texts = load_texts()
-	# download_glyphs('tmp/glyphs.json')
-	# download_texts('tmp/wall_texts.json', WALL_TEXTS_RANGE_NAME, texts['WallTexts'])
-	# download_texts('tmp/hub_texts.json', HUB_TEXTS_RANGE_NAME, texts['HubTexts'])
+	texts = load_texts()
+	download_glyphs('tmp/glyphs.json')
+	download_texts('tmp/wall_texts.json', WALL_TEXTS_RANGE_NAME, texts['WallTexts'])
+	download_texts('tmp/hub_texts.json', HUB_TEXTS_RANGE_NAME, texts['HubTexts'])
 	glyphs = load_json_file('tmp/glyphs.json')
-	# hubs = load_json_file('tmp/hub_texts.json')
-	# walls = load_json_file('tmp/wall_texts.json')
-	# render_hub_texts_page(hubs, walls, glyphs)
-	# render_wall_texts_page(hubs, walls, glyphs)
-	# render_glyphs_page(hubs, walls, glyphs)
-	# render_template('index.html', {'glyphs': glyphs['glyphs']})
-	# render_template('about.html', {'glyphs': glyphs['glyphs']})
-	# render_template('grammar.html', {'glyphs': glyphs['glyphs']})
+	hubs = load_json_file('tmp/hub_texts.json')
+	walls = load_json_file('tmp/wall_texts.json')
+	render_hub_texts_page(hubs, walls, glyphs)
+	render_wall_texts_page(hubs, walls, glyphs)
+	render_glyphs_page(hubs, walls, glyphs)
+	render_template('index.html', {'glyphs': glyphs['glyphs']})
+	render_template('about.html', {'glyphs': glyphs['glyphs']})
+	render_template('grammar.html', {'glyphs': glyphs['glyphs']})
 	
 	render_template('grammar.html', {'grammar_body': import_grammar_guide(), 'glyphs': glyphs['glyphs']})
 	copy_dir_to_dist('Phantom Abyss Grammar/images','images')
