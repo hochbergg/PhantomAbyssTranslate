@@ -22,43 +22,54 @@
 			</p>
 		  </div>
 		</div>
-		
-		{% for c in grammar_body %}
-			{% if c['type'] == 'paragraph' %}
-			<p>
-				{% for cc in c['contents'] %}
-					{% if cc['type'] == 'text' %}
-						{{ cc.text | replace_glyph_references | safe }}
-					{% elif cc['type'] == 'image' %}
-						<image src="{{ cc['url'] }}" style="width: {{ cc['width'] }}; height: {{ cc['height'] }}">
-					{% endif %}
-				{% endfor %}
-			</p>
-			{% elif c['type'] == 'bullet-list' %}
-			<ul>
-				{% for cc in c['contents'] %}
-					{% if cc['type'] == 'list-item' %}
-						{% for cc in c['contents'] %}
-							{% if cc['type'] == 'text' %}
-								{{ cc.text }}
-							{% elif cc['type'] == 'image' %}
-								<image src="{{ cc['url'] }}">
-							{% endif %}
-						{% endfor %}
-					{% endif %}
-				{% endfor %}
-			</ul>
-			{% elif c['type'] == 'h1' %}
-			<h1>{{ c .text }}</h1>
-			{% elif c['type'] == 'h2' %}
-			<h2>{{ c.text }}</h2>
-			{% elif c['type'] == 'h3' %}
-			<h3>{{ c.text }}</h3>
-			{% elif c['type'] == 'h4' %}
-			<h4>{{ c.text }}</h4>
-			{% endif %}
-		{% endfor %}
 	</div>
+		
+	{% set vars = {'in_card': False} %}
+	{% for c in grammar_body %}
+		{% if c['type'] == 'paragraph' %}
+		<p>
+			{% for cc in c['contents'] %}
+				{% if cc['type'] == 'text' %}
+					{{ cc.text | replace_glyph_references | safe }}
+				{% elif cc['type'] == 'image' %}
+					<image src="{{ cc['url'] }}" style="width: {{ cc['width'] }}; height: {{ cc['height'] }}">
+				{% endif %}
+			{% endfor %}
+		</p>
+		{% elif c['type'] == 'bullet-list' %}
+		<ul>
+			{% for cc in c['contents'] %}
+				{% if cc['type'] == 'list-item' %}
+					{% for cc in c['contents'] %}
+						{% if cc['type'] == 'text' %}
+							{{ cc.text }}
+						{% elif cc['type'] == 'image' %}
+							<image src="{{ cc['url'] }}">
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+			{% endfor %}
+		</ul>
+		{% elif c['type'] == 'h1' and c['text']|length > 0 %}
+			{% if vars['in_card'] %}
+				</div></div>
+			{% endif %}
+			{% if vars.update({'in_card': True}) %}{% endif %}
+			<div class="card text-white bg-dark mb-3">
+				<div class="card-header"><h2>{{ c .text }}</h2></div>
+				<div class="card-body">
+		{% elif c['type'] == 'h2' %}
+			<h3>{{ c.text }}</h3>
+		{% elif c['type'] == 'h3' %}
+			<h4>{{ c.text }}</h4>
+		{% elif c['type'] == 'h4' %}
+			<h5>{{ c.text }}</h5>
+		{% endif %}
+	{% endfor %}
+	
+	{% if vars['in_card'] %}
+		</div></div>
+	{% endif %}
 </div>
 {% include 'hovers.html' %}
 {% endblock %}
