@@ -10,6 +10,14 @@
 	.hovered {
 		background-color: #b58900;
 	}
+	
+	.card-header {
+		padding: 2rem 2rem 0 2rem
+	}
+	
+	.card-body {
+		padding: 1rem 2rem 2rem 2rem
+	}
 </style>
 {% endblock %}
 {% block content %}
@@ -32,7 +40,7 @@
 				{% if cc['type'] == 'text' %}
 					{{ cc.text | replace_glyph_references | safe }}
 				{% elif cc['type'] == 'image' %}
-					<image src="{{ cc['url'] }}" style="width: {{ cc['width'] }}; height: {{ cc['height'] }}; margin-bottom: 3rem;">
+					<image src="{{ cc['url'] }}" style="width: {{ cc['width'] }}; height: {{ cc['height'] }}; margin-bottom: 2rem;">
 				{% endif %}
 			{% endfor %}
 		</p>
@@ -40,11 +48,13 @@
 		<ul>
 			{% for cc in c['contents'] %}
 				{% if cc['type'] == 'list-item' %}
-					{% for cc in c['contents'] %}
-						{% if cc['type'] == 'text' %}
-							{{ cc.text }}
-						{% elif cc['type'] == 'image' %}
-							<image src="{{ cc['url'] }}">
+					{% for cc2 in cc['contents'] %}
+						{% if cc2['type'] == 'text' %}
+							{{ cc2.text }}
+						{% elif cc2['type'] == 'h1' %}
+							<h4 style="margin-top: 2rem; display: inline-block;">{{ cc2.text }}</h4>
+						{% elif cc2['type'] == 'image' %}
+							<image src="{{ cc2['url'] }}">
 						{% endif %}
 					{% endfor %}
 				{% endif %}
