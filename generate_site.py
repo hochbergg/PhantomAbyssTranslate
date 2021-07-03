@@ -207,7 +207,9 @@ def parse_grammar_guide_html(tag):
 	if tag.is_('body'):
 		out = []
 		for c in tag.children():
-			out.append(parse_grammar_guide_html(pq(c)))
+			p = parse_grammar_guide_html(pq(c))
+			if p['type'] != 'skip':
+				out.append(p)
 		return {'type': 'body', 'contents': out}
 	
 	elif tag.is_('h1'):
@@ -225,8 +227,13 @@ def parse_grammar_guide_html(tag):
 	elif tag.is_('p'):
 		out = []
 		for c in tag.children():
-			out.append(parse_grammar_guide_html(pq(c)))
-		return {'type': 'paragraph', 'contents': out, 'class': tag.attr('class')}
+			p = parse_grammar_guide_html(pq(c))
+			if p['type'] != 'skip':
+				out.append(p)
+		if len(out) > 0:
+			return {'type': 'paragraph', 'contents': out, 'class': tag.attr('class')}
+		else:
+			return {'type': 'skip'}
 		
 	elif tag.is_('ul'):
 		out = []
@@ -243,7 +250,11 @@ def parse_grammar_guide_html(tag):
 	elif tag.is_('span'):
 		image = tag.children('img')
 		if len(image) == 0:
-			return {'type': 'text', 'text': tag.text(), 'class': tag.attr('class')}
+			txt = tag.text().strip()
+			if len(txt) > 0:
+				return {'type': 'text', 'text': tag.text(), 'class': tag.attr('class')}
+			else:
+				return {'type': 'skip'}
 		else:
 			style = parse_style(image.attr['style'])
 			return {'type': 'image', 'url': image.attr['src'], 'width': style['width'], 'height': style['height'], 'class': tag.attr('class')}
@@ -267,19 +278,19 @@ FILES_TO_COPY = ['AncientLanguage.otf', 'hovers.js', 'solar.bootstrap.min.css', 
 
 global glyphs
 if __name__ == '__main__':
-	texts = load_texts()
-	download_glyphs('tmp/glyphs.json')
-	download_texts('tmp/wall_texts.json', WALL_TEXTS_RANGE_NAME, texts['WallTexts'])
-	download_texts('tmp/hub_texts.json', HUB_TEXTS_RANGE_NAME, texts['HubTexts'])
+	# texts = load_texts()
+	# download_glyphs('tmp/glyphs.json')
+	# download_texts('tmp/wall_texts.json', WALL_TEXTS_RANGE_NAME, texts['WallTexts'])
+	# download_texts('tmp/hub_texts.json', HUB_TEXTS_RANGE_NAME, texts['HubTexts'])
 	glyphs = load_json_file('tmp/glyphs.json')
-	hubs = load_json_file('tmp/hub_texts.json')
-	walls = load_json_file('tmp/wall_texts.json')
-	render_hub_texts_page(hubs, walls, glyphs)
-	render_wall_texts_page(hubs, walls, glyphs)
-	render_glyphs_page(hubs, walls, glyphs)
-	render_template('index.html', {'glyphs': glyphs['glyphs']})
-	render_template('about.html', {'glyphs': glyphs['glyphs']})
-	render_template('grammar.html', {'glyphs': glyphs['glyphs']})
+	# hubs = load_json_file('tmp/hub_texts.json')
+	# walls = load_json_file('tmp/wall_texts.json')
+	# render_hub_texts_page(hubs, walls, glyphs)
+	# render_wall_texts_page(hubs, walls, glyphs)
+	# render_glyphs_page(hubs, walls, glyphs)
+	# render_template('index.html', {'glyphs': glyphs['glyphs']})
+	# render_template('about.html', {'glyphs': glyphs['glyphs']})
+	# render_template('grammar.html', {'glyphs': glyphs['glyphs']})
 	
 	render_template('grammar.html', {'grammar_body': import_grammar_guide(), 'glyphs': glyphs['glyphs']})
 	copy_dir_to_dist('Phantom Abyss Grammar/images','images')
