@@ -28,7 +28,7 @@
 			<p>
 				{% for cc in c['contents'] %}
 					{% if cc['type'] == 'text' %}
-						{{ cc.text }}
+						{{ cc.text | replace_glyph_references | safe }}
 					{% elif cc['type'] == 'image' %}
 						<image src="{{ cc['url'] }}" style="width: {{ cc['width'] }}; height: {{ cc['height'] }}">
 					{% endif %}
