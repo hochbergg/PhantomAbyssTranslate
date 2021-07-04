@@ -296,5 +296,5 @@ if __name__ == '__main__':
 	copy_dir_to_dist('Phantom Abyss Grammar/images','images')
 	
 	
-	#for f in FILES_TO_COPY:
-		#copy_file_to_dist(f)
+	for f in FILES_TO_COPY:
+		copy_file_to_dist(f)
