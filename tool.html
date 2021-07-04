@@ -26,6 +26,11 @@
 			  font-size: 30px;
 			}
 			
+			.highlight {
+				padding-top: 0.5rem!important;
+				padding-bottom: 0.25rem!important;
+			}
+			
 			.glyph-alphabet-label {
 				width: 2.5rem;
 				display: flex;
@@ -408,9 +413,9 @@
 						continue; // Ignore \r 
 					}
 					if ( translationMap[c] !== undefined && translationMap[c] !== '') {
-						out.push({html: '<span class="translated">&nbsp;'+translationMap[c]+'&nbsp;</span>', glyph: c});
+						out.push({html: '<span class="translated">&nbsp;'+translationMap[c]+'&nbsp;</span>', glyph: c, highlight: h.highlight, highlightDiff: h.highlightDiff});
 					} else {
-						out.push({html: '<span class="not-translated">'+c+'</span>', glyph: c});
+						out.push({html: '<span class="not-translated">'+c+'</span>', glyph: c, highlight: h.highlight, highlightDiff: h.highlightDiff});
 					}
 				}
 				return out;
@@ -737,7 +742,7 @@
 			<div class="row">
 				<div class="col">
 					<h1>Phantom Abyss Language Translation Tool</h1>
-					<h6>v0.4.0 alpha</h6>
+					<h6>v0.4.1 alpha</h6>
 				</div>
 			</div>
 			<div class="row mb-2">
@@ -860,8 +865,8 @@
 								<template x-for="t in translatedFilteredTexts" :key="t.where+t.index">
 									<tr class="border-bottom border-dark">
 										<td class="bg-light"><span x-text="t.where"></span>&nbsp;<span x-text="t.index"></span></td>
-										<td><p class="ancient-lang fs-2 mb-0 p-0" style="white-space: pre-line"><template x-for="g in t.highlight"><span x-text="g.char" x-on:click="translationFilter=g.char" :class="{'bg-warning': g.highlight && !g.highlightDiff, 'bg-success': g.highlightDiff === 'add', 'text-light': g.highlightDiff && !g.highlight, 'bg-danger': g.highlightDiff == 'remove', 'text-warning': g.highlightDiff && g.highlight}"></span></template></p></td>
-										<td><template x-for="c in t.translated"><span class="p-0" x-html="c.html" x-on:click="translationFilter=c.glyph"></span></template></td>
+										<td><p class="ancient-lang fs-2 mb-0 p-0" style="white-space: pre-line"><template x-for="g in t.highlight"><span class="highlight" x-text="g.char" x-on:click="translationFilter=g.char" :class="{'bg-warning': g.highlight && !g.highlightDiff, 'bg-success': g.highlightDiff === 'add', 'text-light': g.highlightDiff && !g.highlight, 'bg-danger': g.highlightDiff == 'remove', 'text-warning': g.highlightDiff && g.highlight}"></span></template></p></td>
+										<td><template x-for="g in t.translated"><span class="p-0 highlight" x-html="g.html" x-on:click="translationFilter=g.glyph" :class="{'bg-warning': g.highlight && !g.highlightDiff, 'bg-success': g.highlightDiff === 'add', 'text-light': g.highlightDiff && !g.highlight, 'bg-danger': g.highlightDiff == 'remove', 'text-warning': g.highlightDiff && g.highlight}" ></span></template></td>
 									</tr>
 								</template>
 							</table>
