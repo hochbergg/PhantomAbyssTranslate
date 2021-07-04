@@ -860,7 +860,7 @@
 								<template x-for="t in translatedFilteredTexts" :key="t.where+t.index">
 									<tr class="border-bottom border-dark">
 										<td class="bg-light"><span x-text="t.where"></span>&nbsp;<span x-text="t.index"></span></td>
-										<td><p class="ancient-lang fs-2 mb-0 p-0" style="white-space: pre-line"><template x-for="g in t.highlight"><span x-text="g.char" x-on:click="translationFilter=g.char" :class="{'bg-warning': g.highlight, 'bg-success': g.highlightDiff === 'add', 'text-light': g.highlightDiff, 'bg-danger': g.highlightDiff == 'remove'}"></span></template></p></td>
+										<td><p class="ancient-lang fs-2 mb-0 p-0" style="white-space: pre-line"><template x-for="g in t.highlight"><span x-text="g.char" x-on:click="translationFilter=g.char" :class="{'bg-warning': g.highlight && !g.highlightDiff, 'bg-success': g.highlightDiff === 'add', 'text-light': g.highlightDiff && !g.highlight, 'bg-danger': g.highlightDiff == 'remove', 'text-warning': g.highlightDiff && g.highlight}"></span></template></p></td>
 										<td><template x-for="c in t.translated"><span class="p-0" x-html="c.html" x-on:click="translationFilter=c.glyph"></span></template></td>
 									</tr>
 								</template>
