@@ -18,7 +18,7 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
 # The ID and range of a sample spreadsheet.
 SPREADSHEET_ID = '12w1foShEkiWhKd1ktgwWi8zJv9icKjuQVwRCe17_SVg'
-GLYPHS_RANGE_NAME = "'Proposals (Glyphs)'!A1:J264"
+GLYPHS_RANGE_NAME = "'Proposals (Glyphs)'!A1:J271"
 HUB_TEXTS_RANGE_NAME = "'Hub (Writings)'!A1:P28"
 WALL_TEXTS_RANGE_NAME = "'Wall (Writings)'!A1:P68"
 
