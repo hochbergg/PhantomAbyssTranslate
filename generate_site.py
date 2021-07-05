@@ -274,7 +274,7 @@ def import_grammar_guide():
 	return p['contents']
 			
 	
-FILES_TO_COPY = ['AncientLanguage.otf', 'hovers.js', 'darkly.bootstrap.min.css', 'tool.html']
+FILES_TO_COPY = ['AncientLanguage.otf', 'hovers.js', 'solar.bootstrap.min.css', 'tool.html']
 
 global glyphs
 if __name__ == '__main__':
