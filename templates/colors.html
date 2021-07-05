@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}Glyphs{% endblock %}
+{% block extra_styles %}
+<style>
+	.glyph-link {
+		font-size: 6rem;
+		text-decoration: none;
+	}
+	.color-table {
+		margin-top: 30px;
+		vertical-align: middle;
+	}
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="page-header">
+		<div class="row">
+		  <div class="col-lg-8 col-md-7 col-sm-6">
+			<h1>Colors</h1>
+			<p class="lead">The symbols for colors make a lot more sense once imposed onto a color wheel. The small triangle, if the glyph has one, represents the center of the color wheel. Otherwise, center the glyph inside the color wheel. For most symbols, you can imagine the vertices of the larger polygon as the "source" of a color, and the space within that polygon as the "mixing area" as if you were mixing paints on a palette. For example, the trapezoidal shape in "Orange" points to red and yellow, which would mix within the trapezoid to form that color.</p>
+		  </div>
+		</div>
+	</div>
+  
+  <table class="table table-hover color-table table-dark table-striped">
+		<thead>
+		  <tr>
+			<th scope="col" style="text-align: center;">Glyph</th>
+			<th scope="col">Imposed</th>
+			<th scope="col">Meaning</th>
+			<th scope="col">Notes</th>
+		  </tr>
+		</thead> 
+		<tbody>
+			<tr>
+				<td style="text-align: center;">{{ '#244' | replace_glyph_references | safe }}</td>
+				<td></td>
+				<td>Red</td>
+				<td>Larger mixing area points to red</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#245' | replace_glyph_references | safe }}</td>
+				<td></td>
+				<td>Yellow</td>
+				<td>Larger mixing area points to yellow</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#246' | replace_glyph_references | safe }}</td>
+				<td></td>
+				<td>Blue</td>
+				<td>Larger mixing area points to blue</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#247' | replace_glyph_references | safe }}</td>
+				<td></td>
+				<td>Orange</td>
+				<td>Larger mixing area points to red and yellow</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#248' | replace_glyph_references | safe }}</td>
+				<td></td>
+				<td>Green</td>
+				<td>Larger mixing area points to yellow and blue</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#249' | replace_glyph_references | safe }}</td>
+				<td></td>
+				<td>Purple</td>
+				<td>Larger mixing area points to blue and red</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#250' | replace_glyph_references | safe }}</td>
+				<td></td>
+				<td>Color</td>
+				<td>Based on context, we believe this one is defining the color wheel</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#251' | replace_glyph_references | safe }}</td>
+				<td></td>
+				<td>Brown</td>
+				<td>Larger mixing area points all the secondary colors</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#252' | replace_glyph_references | safe }}</td>
+				<td></td>
+				<td>White</td>
+				<td>Larger mixing area points to all colors</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#253' | replace_glyph_references | safe }}</td>
+				<td></td>
+				<td>Rainbow</td>
+				<td>Larger mixing area points to all colors, but subdivided</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#254' | replace_glyph_references | safe }}</td>
+				<td></td>
+				<td>Black</td>
+				<td>Larger mixing area points to no colors</td>
+			</tr>
+		</tbody>
+	  </table>
+	  
+	  <div>
+	  </div>
+</div>
+{% include 'hovers.html' %}
+{% endblock %}

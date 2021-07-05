@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Glyphs{% endblock %}
+{% block extra_styles %}
+<style>
+	.glyph-link {
+		font-size: 6rem;
+		text-decoration: none;
+	}
+	.color-table {
+		margin-top: 30px;
+		vertical-align: middle;
+	}
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="page-header">
+		<div class="row">
+		  <div class="col-lg-8 col-md-7 col-sm-6">
+			<h1>Numbers</h1>
+			<p class="lead">The number symbols are images of counting on the right hand. The corner represents the thumb, and on 4 you flip over to the back of the hand.<br>
+			You can see that this order is correct by looking at the top of <a href="hub_texts.html">hub texts</a> and see that they are increasing, and  <a href="wall_texts.html">wall texts</a> and see that they form all the numbers between 1 and 67<br>
+			<br>
+			For example, 209 would look like:<br>
+			<img src="hand_num_2.jpg" style="width: 6rem"><img src="hand_num_0.jpg" style="width: 6rem"><img src="hand_num_9.jpg" style="width: 6rem"><br>
+			<span style="width: 6rem; text-align: center; display: inline-block">{{ '#157' | replace_glyph_references | safe }}</span><span style="width: 6rem; text-align: center; display: inline-block">{{ '#155' | replace_glyph_references | safe }}</span><span style="width: 6rem; text-align: center; display: inline-block">{{ '#164' | replace_glyph_references | safe }}</span><br>
+			<span style="width: 6rem; text-align: center; display: inline-block">2</span><span style="width: 6rem; text-align: center; display: inline-block">0</span><span style="width: 6rem; text-align: center; display: inline-block">9</span><br>
+		</p>
+		  </div>
+		</div>
+	</div>
+  
+  <table class="table table-hover color-table table-dark table-striped">
+		<thead>
+		  <tr>
+			<th scope="col" style="text-align: center;">Glyph</th>
+			<th scope="col">Meaning</th>
+			<th scope="col">Notes</th>
+		  </tr>
+		</thead> 
+		<tbody>
+			<tr>
+				<td style="text-align: center;">{{ '#155' | replace_glyph_references | safe }}</td>
+				<td>0</td>
+				<td>Imagine your right hand as a fist, palm pointing at you, thats zero.</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#156' | replace_glyph_references | safe }}</td>
+				<td>1</td>
+				<td>Now add one finger, thats a 1</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#157' | replace_glyph_references | safe }}</td>
+				<td>2</td>
+				<td>another one makes 2</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#158' | replace_glyph_references | safe }}</td>
+				<td>3</td>
+				<td>3...</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#159' | replace_glyph_references | safe }}</td>
+				<td>4</td>
+				<td>and 4, now you gonna continue to count on the same hand.</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#160' | replace_glyph_references | safe }}</td>
+				<td>5</td>
+				<td>you flip your hand around, palm now facing away from you, still having all fingers up. thats your 5</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#161' | replace_glyph_references | safe }}</td>
+				<td>6</td>
+				<td>now to continue counting, simply start removing fingers, this is a 6</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#162' | replace_glyph_references | safe }}</td>
+				<td>7</td>
+				<td>and a 7</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#163' | replace_glyph_references | safe }}</td>
+				<td>8</td>
+				<td>8...</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{{ '#164' | replace_glyph_references | safe }}</td>
+				<td>9</td>
+				<td>and finally 9. Now if you flip your hand again, you land at 0 ready to start counting over again.</td>
+			</tr>
+		</tbody>
+	  </table>
+	  
+	  <div>
+	  </div>
+</div>
+{% include 'hovers.html' %}
+{% endblock %}
