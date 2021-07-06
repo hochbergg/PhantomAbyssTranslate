@@ -82,7 +82,7 @@
 				<td class="translation-cell">{{ text.translation | trim }}
 					{%- if text.translation == "" -%}
 						<span class="badge rounded-pill bg-light">Not yet translated</span>
-					{%- elif text.status != "Accepted Translation" -%}
+					{%- elif text.status != "Agreed" -%}
 						<br><span class="badge rounded-pill bg-secondary">Tentative</span>
 					{%- endif -%}
 				</td>
