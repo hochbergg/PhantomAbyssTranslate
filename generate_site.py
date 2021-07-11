@@ -274,14 +274,14 @@ def import_grammar_guide():
 	return p['contents']
 			
 	
-FILES_TO_COPY = ['AncientLanguage.otf', 'hovers.js', 'solar.bootstrap.min.css', 'tool.html', 'hand_num_0.jpg', 'hand_num_2.jpg', 'hand_num_9.jpg', 'favicon.png']
+FILES_TO_COPY = ['AncientLanguage.otf', 'hovers.js', 'solar.bootstrap.min.css', 'tool.html', 'hand_num_0.jpg', 'hand_num_2.jpg', 'hand_num_9.jpg', 'favicon.png', 'hero.mp4']
 
 global glyphs
 if __name__ == '__main__':
 	texts = load_texts()
-	download_glyphs('tmp/glyphs.json')
-	download_texts('tmp/wall_texts.json', WALL_TEXTS_RANGE_NAME, texts['WallTexts'])
-	download_texts('tmp/hub_texts.json', HUB_TEXTS_RANGE_NAME, texts['HubTexts'])
+	# download_glyphs('tmp/glyphs.json')
+	# download_texts('tmp/wall_texts.json', WALL_TEXTS_RANGE_NAME, texts['WallTexts'])
+	# download_texts('tmp/hub_texts.json', HUB_TEXTS_RANGE_NAME, texts['HubTexts'])
 	glyphs = load_json_file('tmp/glyphs.json')
 	hubs = load_json_file('tmp/hub_texts.json')
 	walls = load_json_file('tmp/wall_texts.json')

@@ -10,29 +10,39 @@
 	.hovered {
 		background-color: #b58900;
 	}
+	
+	.hero-video {
+		margin-top: -64px;
+		width: 100%;
+	}
+	
+	.bg {
+		background-image: linear-gradient(
+			#672a0e, #002b36 15%);	
+		margin-top: -10px;
+	}
 </style>
 {% endblock %}
 {% block content %}
-<div class="container">
-	<div class="page-header">
-		<div class="row">
-			<div class="px-4 pt-5 my-5 text-center">
-			<div class="overflow-hidden" style="max-height: 30vh;">
-			  <div class="container px-5">
-				<img src="hero.png" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Phantom Abyss Language" width="700" height="500" loading="lazy">
+<video class="hero-video" autoplay="true" loop="true" muted="true">
+	  <source src="hero.mp4" type='video/mp4'/>
+  </video>
+  
+<div class="bg">
+	<div class="container">
+		<div class="page-header">
+			  
+			<div class="row">		  
+			  <div class="col-lg-8 col-md-7 col-sm-6 pt-5">
+				<h1>Phantom Abyss Ancient Language</h1>
+				<p class="lead">Welcome to the one-stop-shop where you can learn about the language on the walls of the amazing game <a href="https://www.phantomabyss.com">Phantom Abyss</a>.<br>
+				Use the navigation bar above to learn more about the <a href="glyphs.html">meaning of glyphs</a>, read the game's lore immortalized on the opening zone's walls (on <a href="hub_texts.html">Hub Walls</a> or the social commentary written in <a href="wall_texts.html">treasure rooms</a>.<br>
+				You can also learn the <a href="grammar.html">language's grammar</a> with which you'll be reading and writing in no time.<br>
+				<br>
+				Enjoy! <span class="ancient-language">{{ "ZĔ/ĕUs" | augment_glyphs | safe }}</span><br><br><br>
+				</p>
 			  </div>
 			</div>
-		  </div>
-		  
-		  <div class="col-lg-8 col-md-7 col-sm-6">
-			<h1>Phantom Abyss Ancient Language</h1>
-			<p class="lead">Welcome to the one-stop-shop where you can learn about the language on the walls of the amazing game <a href="https://www.phantomabyss.com">Phantom Abyss</a>.<br>
-			Use the navigation bar above to learn more about the <a href="glyphs.html">meaning of glyphs</a>, read the game's lore immortalized on the opening zone's walls (on <a href="hub_texts.html">Hub Walls</a> or the social commentary written in <a href="wall_texts.html">treasure rooms</a>.<br>
-			You can also learn the <a href="grammar.html">language's grammar</a> with which you'll be reading and writing in no time.<br>
-			<br>
-			Enjoy! <span class="ancient-language">{{ "ZĔ/ĕUs" | augment_glyphs | safe }}</span><br><br><br>
-			</p>
-		  </div>
 		</div>
 	</div>
 </div>
