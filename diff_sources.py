@@ -2,7 +2,7 @@ import myers
 import json
 
 def load_texts(fname):
-	with open(fname,'r') as f:
+	with open(fname,'r', encoding="utf8") as f:
 		return json.load(f)
 		
 		
@@ -42,5 +42,6 @@ def generate_diffs(tl1, tl2):
 with open('diffs.json','w') as f:
 	json.dump({
 		'WallTexts': generate_diffs(old_texts['WallTexts'],new_texts['WallTexts']),
-		'HubTexts': generate_diffs(old_texts['HubTexts'],new_texts['HubTexts'])
+		'HubTexts': generate_diffs(old_texts['HubTexts'],new_texts['HubTexts']),
+        'SecretTexts': {str(i+1): {'where': new_texts['SecretTexts'][str(i+1)]['where'], 'index': i+1, 'diff': [['i', c] for c in new_texts['SecretTexts'][str(i+1)]['text']]} for i in range(len(new_texts['SecretTexts'].values()))}
 	}, f)
