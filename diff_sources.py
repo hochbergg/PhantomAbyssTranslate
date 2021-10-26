@@ -43,5 +43,6 @@ with open('diffs.json','w') as f:
 	json.dump({
 		'WallTexts': generate_diffs(old_texts['WallTexts'],new_texts['WallTexts']),
 		'HubTexts': generate_diffs(old_texts['HubTexts'],new_texts['HubTexts']),
-        'SecretTexts': {str(i+1): {'where': new_texts['SecretTexts'][str(i+1)]['where'], 'index': i+1, 'diff': [['i', c] for c in new_texts['SecretTexts'][str(i+1)]['text']]} for i in range(len(new_texts['SecretTexts'].values()))}
+                'SecretTexts': generate_diffs(old_texts['SecretTexts'],new_texts['SecretTexts']),
+                'HalloweenTexts': {str(i+1): {'where': new_texts['HalloweenTexts'][str(i+1)]['where'], 'index': i+1, 'diff': [['i', c] for c in new_texts['HalloweenTexts'][str(i+1)]['text']]} for i in range(len(new_texts['HalloweenTexts'].values()))}
 	}, f)

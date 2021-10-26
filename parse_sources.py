@@ -33,7 +33,8 @@ with open('texts.json','w') as f:
         d = {
                 'WallTexts': {str(i+1): {'where': 'Wall', 'index': i+1, 'text': wall_texts[i]} for i in range(len(wall_texts))},
                 'HubTexts': {str(i+1): {'where': 'Hub', 'index': i+1, 'text': hub_texts[i]} for i in range(len(hub_texts))},
-                'SecretTexts': {str(i+1): {'where': 'Secret', 'index': i+1, 'text': secret_texts[i]} for i in range(len(secret_texts))},
+                'SecretTexts': {str(i+1): {'where': 'Secret', 'index': i+1, 'text': secret_texts[i]} for i in range(5)},
+                'HalloweenTexts': {str(i-5+1): {'where': 'Halloween', 'index': i-5+1, 'text': secret_texts[i]} for i in range(5,len(secret_texts))},
         }
         
         all_glyphs = []
@@ -44,6 +45,9 @@ with open('texts.json','w') as f:
                 all_glyphs.extend(list(t['text']))
 
         for t in d['SecretTexts'].values():
+                all_glyphs.extend(list(t['text']))
+
+        for t in d['HalloweenTexts'].values():
                 all_glyphs.extend(list(t['text']))
                 
         all_glyphs = set(all_glyphs)
