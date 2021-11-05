@@ -896,6 +896,14 @@
 				while (num.length < 3) num = "0" + num;
 				return "#"+num;
 			}
+			
+			function debounce(func, timeout = 300){
+			  let timer;
+			  return (...args) => {
+				clearTimeout(timer);
+				timer = setTimeout(() => { func.apply(this, args); }, timeout);
+			  };
+			}
 		</script>
 	</head>
 	<body>
@@ -903,7 +911,7 @@
 			<div class="row">
 				<div class="col">
 					<h1>Phantom Abyss Language Translation Tool</h1>
-					<h6>v0.6</h6>
+					<h6>v0.6.1</h6>
 				</div>
 			</div>
 			<div class="row mb-2">
@@ -968,7 +976,7 @@
 											<div class="input-group">
 												<span class="input-group-text fs-6 p-1 number-alphabet-label"><span x-text="formatGlyphNum(g.index)"></span></span>
 												<span class="input-group-text ancient-lang fs-3 p-1 glyph-alphabet-label"><span x-text="g.glyph" x-on:click="searchText=g.glyph"></span></span>
-												<input type="text" class="form-control p-1" x-model="g.translation" x-on:input="storeTranslations(translationAlphabet)">
+												<input type="text" class="form-control p-1" x-model.debounce.500ms="g.translation" x-on:input="storeTranslations(translationAlphabet)">
 											</div>
 
 										</td>
