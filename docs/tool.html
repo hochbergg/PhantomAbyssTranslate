@@ -158,8 +158,16 @@
 				document.body.removeChild(element);
 			}
 			
-			function initFilterHighlightText(diff, diffMode) {
+			function initFilterHighlightText(text, diff, diffMode) {
 				const out = [];
+				// If no diff, ignore diffmode and just output unhighlighted original text
+				if ( diff === undefined ) {
+					for (let i=0; i < text.length; i++) {		
+						out.push({ char: text[i], highlight: false, ignoreBreakMatch: false, highlightDiff: false})
+					}
+					return out;
+				}
+				
 				for (let i=0; i < diff.length; i++) {
 					if ( diffMode === 'new') {
 						if ( diff[i][0] === 'k' ||  diff[i][0] === 'i' ) {
@@ -380,7 +388,7 @@
 					},
 					get allTexts() { return Object.values(this.texts.HubTexts).concat(Object.values(this.texts.WallTexts),Object.values(this.texts.SecretTexts),Object.values(this.texts.HalloweenTexts),Object.values(this.texts.PuzzleTexts)); },
 					get filteredTexts() {
-						let filtered = this.allTexts.map(x => { return {...x, highlight: initFilterHighlightText(x.diff, this.diffMode)}; } );
+						let filtered = this.allTexts.map(x => { return {...x, highlight: initFilterHighlightText(x.text, x.diff, this.diffMode)}; } );
 						if ( this.findIgnoreNamesAndDates ) filtered = filtered.filter(x => filterIgnoreNamesAndDates(x.highlight, textData));
 						if ( this.findIgnoreHubDateAndWallSignature) filtered = filtered.filter(x => filterIgnoreHubDateAndWallSignature(x.highlight, textData, x.where, x.index));
 						if ( this.searchText !== '') {
@@ -528,13 +536,16 @@
 							<template x-if="findAnyOf"><span class="input-group-text"  x-on:click="findAnyOf=!findAnyOf; if(findAnyOf) { findAllOf = false; findExactString=false; }">Any one of</div></template>
 							<template x-if="findAllOf"><span class="input-group-text"  x-on:click="findAllOf=!findAllOf; if(findAllOf) { findAnyOf = false; findExactString=false; }">All of</div></template>
 							<input type="text" class="form-control ancient-lang" x-model="searchText">
-							<button class="btn btn-outline-secondary dropdown-toggle" x-text="{new: 'New Texts', old: 'Old Texts', added: 'Added Glyphs Highlighted', 'full': 'Full Diff'}[diffMode]" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-							  <ul class="dropdown-menu">
+							<!--
+								Disabling diff functionality for now as panels haven't changed in a while and it makes building the tool harder
+								<button class="btn btn-outline-secondary dropdown-toggle" x-text="{new: 'New Texts', old: 'Old Texts', added: 'Added Glyphs Highlighted', 'full': 'Full Diff'}[diffMode]" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+							  	<ul class="dropdown-menu">
 								  <li><a class="dropdown-item" href="#" x-on:click="diffMode='new'">New Texts</a></li>
 								  <li><a class="dropdown-item" href="#" x-on:click="diffMode='old'">Old Texts</a></li>
 								  <li><a class="dropdown-item" href="#" x-on:click="diffMode='added'">Added Glyphs Highlighted</a></li>
 								  <li><a class="dropdown-item" href="#" x-on:click="diffMode='full'">Full Diff</a></li>
 								</ul>
+							--->
 						</div>
 					</div>
 					<div class="row">
