@@ -20,6 +20,7 @@ def parse_texts(fname):
 wall_texts = parse_texts('sources/WallsText.txt')
 hub_texts = parse_texts('sources/HubText.txt')
 secret_texts = parse_texts('sources/SecretText.txt')
+puzzle_texts = parse_texts('sources/PuzzleText.txt')
 
 extra_data = {
         "conceptSeparators": ["Ē","ĕ",">","»","Á","Ñ","Ò","ò","Ć","ē","Ĕ","ĕ","Ė","ě","Ĝ","ĝ","ı","Ĳ","ĳ","Ĵ","œ","\n"],
@@ -35,6 +36,7 @@ with open('texts.json','w') as f:
                 'HubTexts': {str(i+1): {'where': 'Hub', 'index': i+1, 'text': hub_texts[i]} for i in range(len(hub_texts))},
                 'SecretTexts': {str(i+1): {'where': 'Secret', 'index': i+1, 'text': secret_texts[i]} for i in range(5)},
                 'HalloweenTexts': {str(i-5+1): {'where': 'Halloween', 'index': i-5+1, 'text': secret_texts[i]} for i in range(5,len(secret_texts))},
+                'PuzzleTexts': {str(i+1): {'where': 'Puzzle', 'index': i+1, 'text': puzzle_texts[i]} for i in range(len(puzzle_texts))},
         }
         
         all_glyphs = []
